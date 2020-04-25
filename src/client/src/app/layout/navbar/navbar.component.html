@@ -1,1 +1,22 @@
-<nav>This is the nav bar.</nav>
+<mat-toolbar color="primary">
+  <span class="fill-remaining-space">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" [overlapTrigger]="false">
+      <button mat-menu-item>
+        <mat-icon>dashboard</mat-icon>
+        <a routerLink="" routerLinkActive="active">Dashboard</a>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>attach_money</mat-icon>
+        <a routerLink="instruments" routerLinkActive="active">Instruments</a>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>list</mat-icon>
+        <a routerLink="transactions" routerLinkActive="active">Transactions</a>
+      </button>
+    </mat-menu>
+  </span>
+  <span class="fill-remaining-space">The Lazy Investor</span>
+</mat-toolbar>
