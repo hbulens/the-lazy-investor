@@ -1,10 +1,12 @@
 version: 2.1
 jobs:
   build:
+    working_directory: ~/src/client
     docker:
       - image: circleci/node:latest
     steps:
-      - checkout
+      - checkout:
+            path: ~/src
       - run:
           name: Install
           command: npm install
