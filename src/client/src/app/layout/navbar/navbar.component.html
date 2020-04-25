@@ -3,7 +3,7 @@
     <button mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>menu</mat-icon>
     </button>
-    <mat-menu  [overlapTrigger]="false">
+    <mat-menu #menu="matMenu" [overlapTrigger]="false">
       <button mat-menu-item>
         <mat-icon>dashboard</mat-icon>
         <a routerLink="" routerLinkActive="active">Dashboard</a>
