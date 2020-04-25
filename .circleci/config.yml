@@ -1,12 +1,12 @@
 version: 2.1
 jobs:
   build:
-    working_directory: ~/src/client
+    working_directory: ~/the-lazy-investor/src/client
     docker:
       - image: circleci/node:latest
     steps:
       - checkout:
-            path: ~/src
+            path: ~/the-lazy-investor
       - run:
           name: Install
           command: npm install
