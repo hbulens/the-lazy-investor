@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/the-lazy-investor/src/client
     docker:
-      - image: circleci/node:latest
+      - image: circleci/node:10-browsers
     steps:
       - checkout:
             path: ~/the-lazy-investor
