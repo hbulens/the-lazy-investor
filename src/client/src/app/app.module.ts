@@ -27,6 +27,9 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { LinechartComponent } from './components/dashboard/linechart/linechart.component';
+import { StatsComponent } from './components/dashboard/stats/stats.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,9 @@ import { MatMenuModule } from '@angular/material/menu';
     FooterComponent,
     NavbarComponent,
     TransactionsComponent,
-    InstrumentsComponent
+    InstrumentsComponent,
+    LinechartComponent,
+    StatsComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +61,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatSortModule,
     MatGridListModule,
     MatCardModule,
-    MatMenuModule
+    MatMenuModule,
+    NgxChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
