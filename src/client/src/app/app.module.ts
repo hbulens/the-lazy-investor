@@ -6,15 +6,14 @@ import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { SidebarComponent } from './layout/sidebar/sidebar.component';
-import { FooterComponent } from './layout/footer/footer.component';
-import { NavbarComponent } from './layout/navbar/navbar.component';
+import { DashboardComponent } from './modules/dashboard/dashboard.component';
+import { FooterComponent } from './core/footer/footer.component';
+import { NavbarComponent } from './core/header/navbar.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TransactionsComponent } from './components/transactions/transactions.component';
-import { InstrumentsComponent } from './components/instruments/instruments.component';
-import { AngularMaterialModule } from './layout/angular-material.module';
+import { TransactionsModule } from './modules/transactions/transactions.module';
+import { PortfoliosModule } from './modules/portfolios/portfolios.module';
+import { AngularMaterialModule } from './core/angular-material.module';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -27,26 +26,20 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { LinechartComponent } from './components/dashboard/linechart/linechart.component';
-import { StatsComponent } from './components/dashboard/stats/stats.component';
+import { DashboardModule } from './modules/dashboard/dashboard.module';
+
+import * as fromApp from './store/app.reducer';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
-    SidebarComponent,
     FooterComponent,
-    NavbarComponent,
-    TransactionsComponent,
-    InstrumentsComponent,
-    LinechartComponent,
-    StatsComponent
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot(fromApp.appReducer),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     BrowserAnimationsModule,
     AngularMaterialModule,
@@ -62,7 +55,9 @@ import { StatsComponent } from './components/dashboard/stats/stats.component';
     MatGridListModule,
     MatCardModule,
     MatMenuModule,
-    NgxChartsModule
+    DashboardModule,
+    TransactionsModule,
+    PortfoliosModule
   ],
   providers: [],
   bootstrap: [AppComponent]

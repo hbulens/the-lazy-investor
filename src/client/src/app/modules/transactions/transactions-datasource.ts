@@ -7,31 +7,17 @@ import { Observable, of as observableOf, merge } from 'rxjs';
 // TODO: Replace this with your own data model type
 export interface TransactionsItem {
   name: string;
+  date: Date;
+  amount: number;
+  price: number;
   id: number;
 }
 
 // TODO: replace this with real data from your application
 const EXAMPLE_DATA: TransactionsItem[] = [
-  {id: 1, name: 'Hydrogen'},
-  {id: 2, name: 'Helium'},
-  {id: 3, name: 'Lithium'},
-  {id: 4, name: 'Beryllium'},
-  {id: 5, name: 'Boron'},
-  {id: 6, name: 'Carbon'},
-  {id: 7, name: 'Nitrogen'},
-  {id: 8, name: 'Oxygen'},
-  {id: 9, name: 'Fluorine'},
-  {id: 10, name: 'Neon'},
-  {id: 11, name: 'Sodium'},
-  {id: 12, name: 'Magnesium'},
-  {id: 13, name: 'Aluminum'},
-  {id: 14, name: 'Silicon'},
-  {id: 15, name: 'Phosphorus'},
-  {id: 16, name: 'Sulfur'},
-  {id: 17, name: 'Chlorine'},
-  {id: 18, name: 'Argon'},
-  {id: 19, name: 'Potassium'},
-  {id: 20, name: 'Calcium'},
+  { id: 1, name: 'IWDA', date: new Date(), amount: 100, price: 20 },
+  { id: 2, name: 'EMIM', date: new Date(), amount: 10, price: 100 },
+  { id: 3, name: 'EULA', date: new Date(), amount: 25, price: 80 }
 ];
 
 /**
@@ -71,7 +57,7 @@ export class TransactionsDataSource extends DataSource<TransactionsItem> {
    *  Called when the table is being destroyed. Use this function, to clean up
    * any open connections or free any held resources that were set up during connect.
    */
-  disconnect() {}
+  disconnect() { }
 
   /**
    * Paginate the data (client-side). If you're using server-side pagination,
@@ -106,3 +92,4 @@ export class TransactionsDataSource extends DataSource<TransactionsItem> {
 function compare(a: string | number, b: string | number, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
+

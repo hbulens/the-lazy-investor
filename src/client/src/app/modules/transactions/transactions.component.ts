@@ -16,7 +16,7 @@ export class TransactionsComponent implements AfterViewInit, OnInit {
   dataSource: TransactionsDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name'];
+  displayedColumns = ['id', 'name', 'date', 'price', 'amount'];
 
   ngOnInit() {
     this.dataSource = new TransactionsDataSource();

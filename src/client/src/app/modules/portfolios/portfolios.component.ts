@@ -2,24 +2,24 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
-import { InstrumentsDataSource, InstrumentsItem } from './instruments-datasource';
+import { PortfoliosDataSource, PortfoliosItem } from './portfolios-datasource';
 
 @Component({
-  selector: 'app-instruments',
-  templateUrl: './instruments.component.html',
-  styleUrls: ['./instruments.component.scss']
+  selector: 'app-portfolios',
+  templateUrl: './portfolios.component.html',
+  styleUrls: ['./portfolios.component.scss']
 })
-export class InstrumentsComponent implements AfterViewInit, OnInit {
+export class PortfoliosComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatTable) table: MatTable<InstrumentsItem>;
-  dataSource: InstrumentsDataSource;
+  @ViewChild(MatTable) table: MatTable<PortfoliosItem>;
+  dataSource: PortfoliosDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'name'];
 
   ngOnInit() {
-    this.dataSource = new InstrumentsDataSource();
+    this.dataSource = new PortfoliosDataSource();
   }
 
   ngAfterViewInit() {
