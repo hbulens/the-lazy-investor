@@ -6,11 +6,9 @@ jobs:
       - image: circleci/node:latest
     steps:
       - checkout
-      - node/with-cache:
-          steps:
-            - run:
-                name: Install
-                command: npm install
+      - run:
+          name: Install
+          command: npm install
       - run:
           name: Run tests
           command: npm test
