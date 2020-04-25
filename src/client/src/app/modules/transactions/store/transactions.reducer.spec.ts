@@ -1,13 +1,13 @@
-import { reducer, initialState } from './transactions.reducer';
+import { transactionsReducer, initialState, State } from './transactions.reducer';
 
 describe('Transactions Reducer', () => {
   describe('an unknown action', () => {
     it('should return the previous state', () => {
       const action = {} as any;
 
-      const result = reducer(initialState, action);
+      const result = transactionsReducer(initialState, action);
 
-      expect(result).toBe(initialState);
+      expect(result.transactions).toBe(initialState.transactions);
     });
   });
 });
