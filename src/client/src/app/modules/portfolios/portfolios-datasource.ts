@@ -1,33 +1,19 @@
+import { merge, Observable, of as observableOf } from 'rxjs';
+import { map } from 'rxjs/operators';
+
 import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { map } from 'rxjs/operators';
-import { Observable, of as observableOf, merge } from 'rxjs';
 
-// TODO: Replace this with your own data model type
-export interface PortfoliosItem {
-  name: string;
-  id: number;
-}
-
-// TODO: replace this with real data from your application
-const EXAMPLE_DATA: PortfoliosItem[] = [
-  {id: 1, name: 'IWDA'},
-  {id: 2, name: 'EMIM'},
-  {id: 3, name: 'EULA'}
-];
+import { Portfolio } from './store/portfolios.model';
 
 /**
  * Data source for the Portfolios view. This class should
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
-export class PortfoliosDataSource extends DataSource<PortfoliosItem> {
-  data: PortfoliosItem[] = EXAMPLE_DATA;
-  paginator: MatPaginator;
-  sort: MatSort;
-
-  constructor() {
+export class PortfoliosDataSource extends DataSource<Portfolio> {
+  constructor(public data: Portfolio[], public paginator: MatPaginator, public sort: MatSort) {
     super();
   }
 
@@ -36,7 +22,7 @@ export class PortfoliosDataSource extends DataSource<PortfoliosItem> {
    * the returned stream emits new items.
    * @returns A stream of the items to be rendered.
    */
-  connect(): Observable<PortfoliosItem[]> {
+  connect(): Observable<Portfolio[]> {
     // Combine everything that affects the rendered data into one update
     // stream for the data-table to consume.
     const dataMutations = [
@@ -54,13 +40,13 @@ export class PortfoliosDataSource extends DataSource<PortfoliosItem> {
    *  Called when the table is being destroyed. Use this function, to clean up
    * any open connections or free any held resources that were set up during connect.
    */
-  disconnect() {}
+  disconnect() { }
 
   /**
    * Paginate the data (client-side). If you're using server-side pagination,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getPagedData(data: PortfoliosItem[]) {
+  private getPagedData(data: Portfolio[]) {
     const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
     return data.splice(startIndex, this.paginator.pageSize);
   }
@@ -69,7 +55,7 @@ export class PortfoliosDataSource extends DataSource<PortfoliosItem> {
    * Sort the data (client-side). If you're using server-side sorting,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getSortedData(data: PortfoliosItem[]) {
+  private getSortedData(data: Portfolio[]) {
     if (!this.sort.active || this.sort.direction === '') {
       return data;
     }
@@ -78,7 +64,7 @@ export class PortfoliosDataSource extends DataSource<PortfoliosItem> {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
         case 'name': return compare(a.name, b.name, isAsc);
-        case 'id': return compare(+a.id, +b.id, isAsc);
+        case 'id': return compare(+a.name, +b.name, isAsc);
         default: return 0;
       }
     });
@@ -89,3 +75,4 @@ export class PortfoliosDataSource extends DataSource<PortfoliosItem> {
 function compare(a: string | number, b: string | number, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
+

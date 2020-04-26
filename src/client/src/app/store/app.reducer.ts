@@ -1,4 +1,5 @@
 import { ActionReducerMap } from '@ngrx/store';
+
 import * as fromPortfolios from '../modules/portfolios/store/portfolios.reducer';
 import * as fromTransactions from '../modules/transactions/store/transactions.reducer';
 

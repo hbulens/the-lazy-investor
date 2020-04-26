@@ -13,6 +13,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 
 import { TransactionsComponent } from './transactions.component';
+import { EffectsModule } from '@ngrx/effects';
+import { TransactionsEffects } from './store/transactions.effects';
 
 @NgModule({
   declarations: [TransactionsComponent],

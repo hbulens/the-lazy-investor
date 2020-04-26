@@ -1,36 +1,19 @@
+import { merge, Observable, of as observableOf } from 'rxjs';
+import { map } from 'rxjs/operators';
+
 import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { map } from 'rxjs/operators';
-import { Observable, of as observableOf, merge } from 'rxjs';
 
-// TODO: Replace this with your own data model type
-export interface TransactionsItem {
-  name: string;
-  date: Date;
-  amount: number;
-  price: number;
-  id: number;
-}
-
-// TODO: replace this with real data from your application
-const EXAMPLE_DATA: TransactionsItem[] = [
-  { id: 1, name: 'IWDA', date: new Date(), amount: 100, price: 20 },
-  { id: 2, name: 'EMIM', date: new Date(), amount: 10, price: 100 },
-  { id: 3, name: 'EULA', date: new Date(), amount: 25, price: 80 }
-];
+import { Transaction } from './store/transactions.model';
 
 /**
  * Data source for the Transactions view. This class should
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
-export class TransactionsDataSource extends DataSource<TransactionsItem> {
-  data: TransactionsItem[] = EXAMPLE_DATA;
-  paginator: MatPaginator;
-  sort: MatSort;
-
-  constructor() {
+export class TransactionsDataSource extends DataSource<Transaction> {
+  constructor(public data: Transaction[], public paginator: MatPaginator, public sort: MatSort) {
     super();
   }
 
@@ -39,7 +22,7 @@ export class TransactionsDataSource extends DataSource<TransactionsItem> {
    * the returned stream emits new items.
    * @returns A stream of the items to be rendered.
    */
-  connect(): Observable<TransactionsItem[]> {
+  connect(): Observable<Transaction[]> {
     // Combine everything that affects the rendered data into one update
     // stream for the data-table to consume.
     const dataMutations = [
@@ -63,7 +46,7 @@ export class TransactionsDataSource extends DataSource<TransactionsItem> {
    * Paginate the data (client-side). If you're using server-side pagination,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getPagedData(data: TransactionsItem[]) {
+  private getPagedData(data: Transaction[]) {
     const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
     return data.splice(startIndex, this.paginator.pageSize);
   }
@@ -72,7 +55,7 @@ export class TransactionsDataSource extends DataSource<TransactionsItem> {
    * Sort the data (client-side). If you're using server-side sorting,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getSortedData(data: TransactionsItem[]) {
+  private getSortedData(data: Transaction[]) {
     if (!this.sort.active || this.sort.direction === '') {
       return data;
     }
@@ -81,7 +64,7 @@ export class TransactionsDataSource extends DataSource<TransactionsItem> {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
         case 'name': return compare(a.name, b.name, isAsc);
-        case 'id': return compare(+a.id, +b.id, isAsc);
+        case 'id': return compare(+a.name, +b.name, isAsc);
         default: return 0;
       }
     });
