@@ -1,22 +1,37 @@
-<mat-toolbar color="primary">
-  <span class="fill-remaining-space">
-    <button mat-icon-button [matMenuTriggerFor]="menu">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <mat-menu #menu="matMenu" [overlapTrigger]="false">
-      <button mat-menu-item>
-        <mat-icon>dashboard</mat-icon>
-        <a routerLink="" routerLinkActive="active">Dashboard</a>
-      </button>
-      <button mat-menu-item>
-        <mat-icon>attach_money</mat-icon>
-        <a routerLink="portfolios" routerLinkActive="active">Portfolios</a>
-      </button>
-      <button mat-menu-item>
-        <mat-icon>list</mat-icon>
-        <a routerLink="transactions" routerLinkActive="active">Transactions</a>
-      </button>
-    </mat-menu>
-  </span>
-  <span class="fill-remaining-space">The Lazy Investor</span>
-</mat-toolbar>
+<div class="wrapper">
+  <mat-toolbar color="primary" class="header">
+    <span class="nav-tool-items">
+      <mat-icon (click)="sidenav.toggle()" class="hamburger">menu</mat-icon>
+    </span>
+    <div class="navTitle">The Lazy Investor</div>
+  </mat-toolbar>
+
+  <mat-sidenav-container>
+    <!-- Sidenav -->
+    <mat-sidenav #sidenav [mode]="isBiggerScreen() ? 'over' : 'side'" [(opened)]="opened" [fixedInViewport]="true"
+      [fixedTopGap]>
+      <mat-nav-list>
+        <a mat-list-item routerLink="" routerLinkActive="active">
+          <mat-icon>dashboard</mat-icon> Dashboard
+        </a>
+        <a mat-list-item routerLink="transactions" routerLinkActive="active">
+          <mat-icon>book</mat-icon> Transactions
+        </a>
+        <a mat-list-item routerLink="portfolios" routerLinkActive="active">
+          <mat-icon>account_balance</mat-icon> Portfolios
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+
+      <!-- Main content -->
+      <router-outlet></router-outlet>
+
+      <!-- Footer -->
+      <div class="container-fluid">
+        <app-footer></app-footer>
+      </div>
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
+</div>
