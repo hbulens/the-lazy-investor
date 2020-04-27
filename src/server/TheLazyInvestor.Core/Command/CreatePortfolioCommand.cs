@@ -1,11 +1,11 @@
 using MediatR;
-using TheLazyInvestor.Entities;
+using TheLazyInvestor.Core.Model;
 
 namespace TheLazyInvestor.Core
 {
-    public class PortfolioCreatedNotification : INotification
+    public class CreatePortfolioCommand : IRequest<Portfolio>
     {
-        public PortfolioCreatedNotification(Portfolio portfolio)
+        public CreatePortfolioCommand(Portfolio portfolio)
         {
             Portfolio = portfolio;
         }

@@ -1,15 +1,15 @@
 using MediatR;
-using TheLazyInvestor.Entities;
+using TheLazyInvestor.Core.Model;
 
 namespace TheLazyInvestor.Core
 {
     public class UpdatePortfolioCommand : IRequest<Portfolio>
     {
-        private readonly Portfolio _portfolio;
-
         public UpdatePortfolioCommand(Portfolio portfolio)
         {
-            _portfolio = portfolio;
+            Portfolio = portfolio;
         }
+
+        public Portfolio Portfolio { get; }
     }
 }

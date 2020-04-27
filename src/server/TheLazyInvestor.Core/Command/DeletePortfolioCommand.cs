@@ -1,17 +1,15 @@
 using MediatR;
-using TheLazyInvestor.Entities;
+using TheLazyInvestor.Core.Model;
 
 namespace TheLazyInvestor.Core
 {
     public class DeletePortfolioCommand : IRequest<Portfolio>, IRequest
     {
-        private readonly Portfolio _portfolio;
-
         public DeletePortfolioCommand(Portfolio portfolio)
         {
-            _portfolio = portfolio;
+            Portfolio = portfolio;
         }
 
-        public Portfolio Portfolio => _portfolio;
+        public Portfolio Portfolio { get; }
     }
 }

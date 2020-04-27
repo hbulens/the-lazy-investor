@@ -1,11 +1,11 @@
 using MediatR;
-using TheLazyInvestor.Entities;
+using TheLazyInvestor.Core.Model;
 
 namespace TheLazyInvestor.Core
 {
-    public class TransactionCreatedNotification : INotification
+    public class CreateTransactionCommand : IRequest<Transaction>
     {
-        public TransactionCreatedNotification(Transaction transaction)
+        public CreateTransactionCommand(Transaction transaction)
         {
             Transaction = transaction;
         }

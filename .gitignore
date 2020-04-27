@@ -114,3 +114,4 @@ obj
 packages
 *.csproj.user
 launchSettings.json
+*.log

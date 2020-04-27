@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using TheLazyInvestor.Core;
-using TheLazyInvestor.Entities;
+using TheLazyInvestor.Core.Model;
 
 namespace TheLazyInvestor.Web.Api
 {
@@ -42,7 +42,7 @@ namespace TheLazyInvestor.Web.Api
         [HttpDelete]
         public async Task<ActionResult> Delete(Portfolio portfolio)
         {
-            var result = await _mediator.Send(new DeletePortfolioCommand(portfolio));
+            object result = await _mediator.Send(new DeletePortfolioCommand(portfolio));
             return Ok();
         }
     }

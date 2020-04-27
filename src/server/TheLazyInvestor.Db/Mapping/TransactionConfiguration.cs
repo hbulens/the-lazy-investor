@@ -10,6 +10,8 @@ namespace TheLazyInvestor.Infrastructure
         {
             builder.ToTable("transaction");
             builder.HasKey(x => x.Id);
+
+            builder.Property(x => x.Id).ValueGeneratedOnAdd();
         }
     }
 }

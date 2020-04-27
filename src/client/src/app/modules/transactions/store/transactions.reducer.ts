@@ -22,17 +22,17 @@ export function transactionsReducer(state: State = initialState, action: Transac
         transactions: [...state.transactions, action.payload]
       };
     case TransactionActions.UPDATE_TRANSACTION:
-      const updatedRecipe = {
+      const updatedTransaction = {
         ...state.transactions[action.payload.index],
         ...action.payload.newTransaction
       };
 
-      const updatedRecipes = [...state.transactions];
-      updatedRecipes[action.payload.index] = updatedRecipe;
+      const updatedTransactions = [...state.transactions];
+      updatedTransactions[action.payload.index] = updatedTransaction;
 
       return {
         ...state,
-        transactions: updatedRecipes
+        transactions: updatedTransactions
       };
     case TransactionActions.DELETE_TRANSACTION:
       return {

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using MediatR;
-using TheLazyInvestor.Entities;
+using TheLazyInvestor.Core.Model;
 
 namespace TheLazyInvestor.Core
 {

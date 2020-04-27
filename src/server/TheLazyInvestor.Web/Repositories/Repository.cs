@@ -5,11 +5,11 @@ namespace TheLazyInvestor.Web.Repositories
 {
     public abstract class Repository<T>
     {
-        protected readonly LazyInvestorDbContext _context;
+        protected readonly LazyInvestorDbContext Context;
 
         protected Repository(LazyInvestorDbContext context)
         {
-            _context = context ?? throw new ArgumentNullException(nameof(context));
+            Context = context ?? throw new ArgumentNullException(nameof(context));
         }
     }
 }

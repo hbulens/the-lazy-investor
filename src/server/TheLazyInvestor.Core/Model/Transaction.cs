@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace TheLazyInvestor.Entities
+namespace TheLazyInvestor.Core.Model
 {
     public class Transaction
     {
@@ -15,7 +17,5 @@ namespace TheLazyInvestor.Entities
         public float Price { get; set; }
 
         public int PortfolioId { get; set; }
-
-        public virtual Portfolio Portfolio { get; set; }
     }
 }

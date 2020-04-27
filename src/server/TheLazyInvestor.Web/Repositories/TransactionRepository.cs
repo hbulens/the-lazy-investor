@@ -15,25 +15,26 @@ namespace TheLazyInvestor.Web.Repositories
         }
 
         public async Task<IEnumerable<Transaction>> GetAllAsync()
-            => await _context.Transactions.ToListAsync();
+            => await Context.Transactions.ToListAsync();
 
         public async Task<Transaction> CreateAsync(Transaction entity)
         {
-            EntityEntry<Transaction> newEntity = await _context.Transactions.AddAsync(entity);
+            EntityEntry<Transaction> newEntity = await Context.Transactions.AddAsync(entity);
+            await Context.SaveChangesAsync();
             return newEntity.Entity;
         }
 
         public async Task<Transaction> UpdateAsync(Transaction entity)
         {
-            EntityEntry<Transaction> newEntity = _context.Transactions.Update(entity);
-            await _context.SaveChangesAsync();
+            EntityEntry<Transaction> newEntity = Context.Transactions.Update(entity);
+            await Context.SaveChangesAsync();
             return newEntity.Entity;
         }
 
         public async Task<Transaction> DeleteAsync(Transaction entity)
         {
-            EntityEntry<Transaction> newEntity = _context.Transactions.Remove(entity);
-            await _context.SaveChangesAsync();
+            EntityEntry<Transaction> newEntity = Context.Transactions.Remove(entity);
+            await Context.SaveChangesAsync();
             return newEntity.Entity;
         }
     }
