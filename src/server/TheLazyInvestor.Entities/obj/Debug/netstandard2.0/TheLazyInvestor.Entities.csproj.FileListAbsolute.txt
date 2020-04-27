@@ -1,0 +1,9 @@
+D:\Source\the-lazy-investor\src\server\TheLazyInvestor.Entities\bin\Debug\netstandard2.0\TheLazyInvestor.Entities.deps.json
+D:\Source\the-lazy-investor\src\server\TheLazyInvestor.Entities\bin\Debug\netstandard2.0\TheLazyInvestor.Entities.dll
+D:\Source\the-lazy-investor\src\server\TheLazyInvestor.Entities\bin\Debug\netstandard2.0\TheLazyInvestor.Entities.pdb
+D:\Source\the-lazy-investor\src\server\TheLazyInvestor.Entities\obj\Debug\netstandard2.0\TheLazyInvestor.Entities.csprojAssemblyReference.cache
+D:\Source\the-lazy-investor\src\server\TheLazyInvestor.Entities\obj\Debug\netstandard2.0\TheLazyInvestor.Entities.csproj.CoreCompileInputs.cache
+D:\Source\the-lazy-investor\src\server\TheLazyInvestor.Entities\obj\Debug\netstandard2.0\TheLazyInvestor.Entities.AssemblyInfoInputs.cache
+D:\Source\the-lazy-investor\src\server\TheLazyInvestor.Entities\obj\Debug\netstandard2.0\TheLazyInvestor.Entities.AssemblyInfo.cs
+D:\Source\the-lazy-investor\src\server\TheLazyInvestor.Entities\obj\Debug\netstandard2.0\TheLazyInvestor.Entities.dll
+D:\Source\the-lazy-investor\src\server\TheLazyInvestor.Entities\obj\Debug\netstandard2.0\TheLazyInvestor.Entities.pdb
