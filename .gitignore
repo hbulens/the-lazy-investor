@@ -106,3 +106,9 @@ dist
 # ASP.NET Core
 secrets.json
 .vs
+*.suo
+*.user
+_ReSharper.*
+bin
+obj
+packages
