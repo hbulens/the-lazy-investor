@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -27,7 +25,7 @@ namespace TheLazyInvestor.Web.Repositories
 
         public async Task<Portfolio> UpdateAsync(Portfolio entity)
         {
-            EntityEntry<Portfolio> newEntity =  Context.Portfolios.Update(entity);
+            EntityEntry<Portfolio> newEntity = Context.Portfolios.Update(entity);
             await Context.SaveChangesAsync();
             return newEntity.Entity;
         }

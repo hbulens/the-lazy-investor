@@ -1,4 +1,3 @@
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -15,7 +14,6 @@ namespace TheLazyInvestor.Core
         private readonly IPortfolioRepository _portfolioRepository;
         private readonly IMapper _mapper;
         private readonly ILogger _logger;
-
 
         public CreatePortfolioCommandHandler(IMediator mediator, IPortfolioRepository portfolioRepository, IMapper mapper, ILogger<CreatePortfolioCommandHandler> logger)
         {

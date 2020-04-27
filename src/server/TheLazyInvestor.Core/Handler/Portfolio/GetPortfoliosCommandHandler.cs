@@ -25,6 +25,6 @@ namespace TheLazyInvestor.Core
         {
             IEnumerable<Entities.Portfolio> portfolios = await _portfolioRepository.GetAllAsync();
             return _mapper.Map<IEnumerable<Portfolio>>(portfolios);
-        }            
+        }
     }
 }
