@@ -1,17 +1,220 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Source\\the-lazy-investor\\server\\TheLazyInvestor.Web\\TheLazyInvestor.Web.csproj": {}
+    "D:\\Source\\the-lazy-investor\\src\\server\\TheLazyInvestor.Web\\TheLazyInvestor.Web.csproj": {}
   },
   "projects": {
-    "D:\\Source\\the-lazy-investor\\server\\TheLazyInvestor.Web\\TheLazyInvestor.Web.csproj": {
+    "D:\\Source\\the-lazy-investor\\src\\server\\TheLazyInvestor.Core\\TheLazyInvestor.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Source\\the-lazy-investor\\server\\TheLazyInvestor.Web\\TheLazyInvestor.Web.csproj",
-        "projectName": "TheLazyInvestor.Web",
-        "projectPath": "D:\\Source\\the-lazy-investor\\server\\TheLazyInvestor.Web\\TheLazyInvestor.Web.csproj",
+        "projectUniqueName": "D:\\Source\\the-lazy-investor\\src\\server\\TheLazyInvestor.Core\\TheLazyInvestor.Core.csproj",
+        "projectName": "TheLazyInvestor.Core",
+        "projectPath": "D:\\Source\\the-lazy-investor\\src\\server\\TheLazyInvestor.Core\\TheLazyInvestor.Core.csproj",
         "packagesPath": "C:\\Users\\hendr\\.nuget\\packages\\",
-        "outputPath": "D:\\Source\\the-lazy-investor\\server\\TheLazyInvestor.Web\\obj\\",
+        "outputPath": "D:\\Source\\the-lazy-investor\\src\\server\\TheLazyInvestor.Core\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\hendr\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://pkgs.dev.azure.com/dimenicsbe/_packaging/Dime.Scheduler/nuget/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {
+              "D:\\Source\\the-lazy-investor\\src\\server\\TheLazyInvestor.Entities\\TheLazyInvestor.Entities.csproj": {
+                "projectPath": "D:\\Source\\the-lazy-investor\\src\\server\\TheLazyInvestor.Entities\\TheLazyInvestor.Entities.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "MediatR": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Source\\the-lazy-investor\\src\\server\\TheLazyInvestor.Db\\TheLazyInvestor.Db.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Source\\the-lazy-investor\\src\\server\\TheLazyInvestor.Db\\TheLazyInvestor.Db.csproj",
+        "projectName": "TheLazyInvestor.Db",
+        "projectPath": "D:\\Source\\the-lazy-investor\\src\\server\\TheLazyInvestor.Db\\TheLazyInvestor.Db.csproj",
+        "packagesPath": "C:\\Users\\hendr\\.nuget\\packages\\",
+        "outputPath": "D:\\Source\\the-lazy-investor\\src\\server\\TheLazyInvestor.Db\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\hendr\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://pkgs.dev.azure.com/dimenicsbe/_packaging/Dime.Scheduler/nuget/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {
+              "D:\\Source\\the-lazy-investor\\src\\server\\TheLazyInvestor.Entities\\TheLazyInvestor.Entities.csproj": {
+                "projectPath": "D:\\Source\\the-lazy-investor\\src\\server\\TheLazyInvestor.Entities\\TheLazyInvestor.Entities.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[3.1.3, )"
+            },
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Source\\the-lazy-investor\\src\\server\\TheLazyInvestor.Entities\\TheLazyInvestor.Entities.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Source\\the-lazy-investor\\src\\server\\TheLazyInvestor.Entities\\TheLazyInvestor.Entities.csproj",
+        "projectName": "TheLazyInvestor.Entities",
+        "projectPath": "D:\\Source\\the-lazy-investor\\src\\server\\TheLazyInvestor.Entities\\TheLazyInvestor.Entities.csproj",
+        "packagesPath": "C:\\Users\\hendr\\.nuget\\packages\\",
+        "outputPath": "D:\\Source\\the-lazy-investor\\src\\server\\TheLazyInvestor.Entities\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\hendr\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://pkgs.dev.azure.com/dimenicsbe/_packaging/Dime.Scheduler/nuget/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Source\\the-lazy-investor\\src\\server\\TheLazyInvestor.Web\\TheLazyInvestor.Web.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Source\\the-lazy-investor\\src\\server\\TheLazyInvestor.Web\\TheLazyInvestor.Web.csproj",
+        "projectName": "TheLazyInvestor.Web",
+        "projectPath": "D:\\Source\\the-lazy-investor\\src\\server\\TheLazyInvestor.Web\\TheLazyInvestor.Web.csproj",
+        "packagesPath": "C:\\Users\\hendr\\.nuget\\packages\\",
+        "outputPath": "D:\\Source\\the-lazy-investor\\src\\server\\TheLazyInvestor.Web\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
@@ -32,7 +235,14 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
-            "projectReferences": {}
+            "projectReferences": {
+              "D:\\Source\\the-lazy-investor\\src\\server\\TheLazyInvestor.Core\\TheLazyInvestor.Core.csproj": {
+                "projectPath": "D:\\Source\\the-lazy-investor\\src\\server\\TheLazyInvestor.Core\\TheLazyInvestor.Core.csproj"
+              },
+              "D:\\Source\\the-lazy-investor\\src\\server\\TheLazyInvestor.Db\\TheLazyInvestor.Db.csproj": {
+                "projectPath": "D:\\Source\\the-lazy-investor\\src\\server\\TheLazyInvestor.Db\\TheLazyInvestor.Db.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -43,6 +253,32 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "MediatR": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
+            "MediatR.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.3, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[3.1.2, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[3.1.3, )"
+            },
+            "Scrutor": {
+              "target": "Package",
+              "version": "[3.2.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

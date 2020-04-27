@@ -11,6 +11,7 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("9d790ac2-c2e2-4ce2-9959-8002ed3a2d10")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("TheLazyInvestor.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]

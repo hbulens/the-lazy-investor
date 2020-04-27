@@ -102,3 +102,7 @@ dist
 
 # TernJS port file
 .tern-port
+
+# ASP.NET Core
+secrets.json
+.vs
