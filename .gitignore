@@ -112,3 +112,5 @@ _ReSharper.*
 bin
 obj
 packages
+*.csproj.user
+launchSettings.json
