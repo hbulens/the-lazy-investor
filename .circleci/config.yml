@@ -1,0 +1,16 @@
+version: 2.1
+jobs:
+  build:
+    working_directory: ~/the-lazy-investor/src/client
+    docker:
+      - image: circleci/node:10-browsers
+    steps:
+      - checkout:
+            path: ~/the-lazy-investor
+      - run:
+          name: Install
+          command: npm install
+      - run:
+          name: Run tests
+          command: npm test
+          no_output_timeout: 45m
