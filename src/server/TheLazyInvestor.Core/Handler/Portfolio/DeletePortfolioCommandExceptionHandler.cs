@@ -18,7 +18,7 @@ namespace TheLazyInvestor.Core
 
         public Task Handle(DeletePortfolioCommand request, Exception exception, RequestExceptionHandlerState<Portfolio> state, CancellationToken cancellationToken)
         {
-            _logger.LogError(exception, $"Exception occurred when removing portfolio {request?.Portfolio?.Name}");
+            _logger.LogError(exception, $"Exception occurred when removing portfolio {request?.PortfolioId}");
             return Task.CompletedTask;
         }
     }

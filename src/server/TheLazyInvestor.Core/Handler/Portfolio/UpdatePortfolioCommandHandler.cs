@@ -22,8 +22,8 @@ namespace TheLazyInvestor.Core
 
         public async Task<Portfolio> Handle(UpdatePortfolioCommand command, CancellationToken cancellationToken)
         {
-            Entities.Portfolio newPortfolio = await _portfolioRepository.UpdateAsync(_mapper.Map<Entities.Portfolio>(command.Portfolio));
-            return _mapper.Map<Portfolio>(newPortfolio);
+            Entities.Portfolio updatedPortfolio = await _portfolioRepository.UpdateAsync(_mapper.Map<Entities.Portfolio>(command.Portfolio));
+            return _mapper.Map<Portfolio>(updatedPortfolio);
         }
     }
 }

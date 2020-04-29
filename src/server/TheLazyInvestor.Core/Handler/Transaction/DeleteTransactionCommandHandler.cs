@@ -3,11 +3,10 @@ using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using TheLazyInvestor.Entities;
-using Transaction = TheLazyInvestor.Core.Model.Transaction;
 
 namespace TheLazyInvestor.Core
 {
-    public class DeleteTransactionCommandHandler : IRequestHandler<DeleteTransactionCommand, Transaction>
+    public class DeleteTransactionCommandHandler : IRequestHandler<DeleteTransactionCommand>
     {
         private readonly IMediator _mediator;
         private readonly ITransactionRepository _transactionRepository;
@@ -20,10 +19,10 @@ namespace TheLazyInvestor.Core
             _mapper = mapper;
         }
 
-        public async Task<Transaction> Handle(DeleteTransactionCommand command, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(DeleteTransactionCommand command, CancellationToken cancellationToken)
         {
-            Entities.Transaction deletedTransaction = await _transactionRepository.DeleteAsync(_mapper.Map<Entities.Transaction>(command.Transaction));
-            return _mapper.Map<Transaction>(deletedTransaction);
+            await _transactionRepository.DeleteAsync(_mapper.Map<Entities.Transaction>(new Transaction { Id = command.TransactionId }));
+            return Unit.Value;
         }
     }
-}
+} 

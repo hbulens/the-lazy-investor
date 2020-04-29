@@ -15,7 +15,6 @@ namespace TheLazyInvestor.Core
         private readonly IMapper _mapper;
         private readonly ILogger _logger;
 
-
         public CreateTransactionCommandHandler(IMediator mediator, ITransactionRepository transactionRepository, IMapper mapper, ILogger<CreateTransactionCommandHandler> logger)
         {
             _mediator = mediator;
