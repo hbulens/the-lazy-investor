@@ -13,7 +13,7 @@ import { Transaction } from './transactions.model';
 export class TransactionsEffects {
 
   @Effect()
-  fetchRecipes = this.actions$.pipe(
+  fetchTransactions = this.actions$.pipe(
     ofType(TransactionsActions.FETCH_TRANSACTIONS),
     switchMap(() => this.http.get<Transaction[]>('https://jsonplaceholder.typicode.com/users')),
     map(transactions => new TransactionsActions.SetTransactions(transactions))

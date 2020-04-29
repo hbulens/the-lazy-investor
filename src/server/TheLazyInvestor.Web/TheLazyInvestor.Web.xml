@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TheLazyInvestor.Web</name>
+    </assembly>
+    <members>
+        <member name="T:TheLazyInvestor.Web.Api.PortfolioController">
+            <summary>
+            Web API for retrieving and manipulating portfolios.
+            </summary>
+        </member>
+        <member name="M:TheLazyInvestor.Web.Api.PortfolioController.#ctor(MediatR.IMediator)">
+            <summary>
+            Initializes a new instance of the <see cref="T:TheLazyInvestor.Web.Api.TransactionController"/> class.
+            </summary>
+            <param name="mediator"></param>
+        </member>
+        <member name="M:TheLazyInvestor.Web.Api.PortfolioController.Get">
+            <summary>
+            Gets a collection of <see cref="T:TheLazyInvestor.Core.Model.Portfolio"/>
+            </summary>
+            <returns>A collection of <see cref="T:TheLazyInvestor.Core.Model.Portfolio"/> instances</returns>
+        </member>
+        <member name="M:TheLazyInvestor.Web.Api.PortfolioController.Post(TheLazyInvestor.Core.Model.Portfolio)">
+            <summary>
+            Creates an item
+            </summary>
+            <param name="portfolio">The record to create</param>
+            <returns>The new item</returns>
+        </member>
+        <member name="M:TheLazyInvestor.Web.Api.PortfolioController.Put(TheLazyInvestor.Core.Model.Portfolio)">
+            <summary>
+            Updates an item
+            </summary>
+            <param name="portfolio">The record to update</param>
+            <returns>The updated item</returns>
+        </member>
+        <member name="M:TheLazyInvestor.Web.Api.PortfolioController.Delete(System.Int32)">
+            <summary>
+            Removes an item
+            </summary>
+            <param name="id">The record's id</param>
+            <returns>An instance of <see cref="T:Microsoft.AspNetCore.Mvc.ActionResult"/></returns>
+        </member>
+        <member name="T:TheLazyInvestor.Web.Api.TransactionController">
+            <summary>
+            Web API for retrieving and manipulating transactions.
+            </summary>
+        </member>
+        <member name="M:TheLazyInvestor.Web.Api.TransactionController.#ctor(MediatR.IMediator)">
+            <summary>
+            Initializes a new instance of the <see cref="T:TheLazyInvestor.Web.Api.TransactionController"/> class.
+            </summary>
+            <param name="mediator"></param>
+        </member>
+        <member name="M:TheLazyInvestor.Web.Api.TransactionController.Get">
+            <summary>
+            Gets a collection of <see cref="T:TheLazyInvestor.Core.Model.Transaction"/>
+            </summary>
+            <returns>A collection of <see cref="T:TheLazyInvestor.Core.Model.Transaction"/> instances</returns>
+        </member>
+        <member name="M:TheLazyInvestor.Web.Api.TransactionController.Post(TheLazyInvestor.Core.Model.Transaction)">
+            <summary>
+            Creates an item
+            </summary>
+            <param name="transaction">The record to create</param>
+            <returns>The new item</returns>
+        </member>
+        <member name="M:TheLazyInvestor.Web.Api.TransactionController.Put(TheLazyInvestor.Core.Model.Transaction)">
+            <summary>
+            Updates an item
+            </summary>
+            <param name="transaction">The record to update</param>
+            <returns>The updated item</returns>
+        </member>
+        <member name="M:TheLazyInvestor.Web.Api.TransactionController.Delete(System.Int32)">
+            <summary>
+            Removes an item
+            </summary>
+            <param name="id">The record's id</param>
+            <returns>An instance of <see cref="T:Microsoft.AspNetCore.Mvc.ActionResult"/></returns>
+        </member>
+    </members>
+</doc>

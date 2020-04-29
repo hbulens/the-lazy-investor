@@ -102,3 +102,16 @@ dist
 
 # TernJS port file
 .tern-port
+
+# ASP.NET Core
+secrets.json
+.vs
+*.suo
+*.user
+_ReSharper.*
+bin
+obj
+packages
+*.csproj.user
+launchSettings.json
+*.log

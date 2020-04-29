@@ -30,8 +30,10 @@ Run `dotnet publish` for the server app and `yarn build` for the client app
 
 ## Built With
 
-* ASP.NET Core
-* Angular 9
+The client application is built with a standard Angular 9 app, supported by libraries such as Angular Material and ngrx.
+
+The server application is built on top of the ASP.NET Core framework. It is primarily used to serve RESTful web services.
+Entity Framework is used as the ORM to query and manipulate data in a PostgreSQL database. For this project, the mediator pattern is used to link web requests to the back-end services.
 
 ## Contributing
 

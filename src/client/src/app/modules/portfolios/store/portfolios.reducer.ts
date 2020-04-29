@@ -22,17 +22,17 @@ export function portfoliosReducer(state: State = initialState, action: Portfolio
         portfolios: [...state.portfolios, action.payload]
       };
     case PortfolioActions.UPDATE_PORTFOLIO:
-      const updatedRecipe = {
+      const updatedPortfolio = {
         ...state.portfolios[action.payload.index],
         ...action.payload.newPortfolio
       };
 
-      const updatedRecipes = [...state.portfolios];
-      updatedRecipes[action.payload.index] = updatedRecipe;
+      const updatedPortfolios = [...state.portfolios];
+      updatedPortfolios[action.payload.index] = updatedPortfolio;
 
       return {
         ...state,
-        portfolios: updatedRecipes
+        portfolios: updatedPortfolios
       };
     case PortfolioActions.DELETE_PORTFOLIO:
       return {

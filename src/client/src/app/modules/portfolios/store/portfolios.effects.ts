@@ -13,7 +13,7 @@ import { Portfolio } from './portfolios.model';
 export class PortfoliosEffects {
 
   @Effect()
-  fetchRecipes = this.actions$.pipe(
+  fetchPortfolios = this.actions$.pipe(
     ofType(PortfoliosActions.FETCH_PORTFOLIOS),
     switchMap(() => this.http.get<Portfolio[]>('https://jsonplaceholder.typicode.com/users')),
     map(transactions => new PortfoliosActions.SetPortfolios(transactions))
