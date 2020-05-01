@@ -16,12 +16,16 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { AreaComponent } from './components/area/area.component';
+import { PiechartComponent } from './components/piechart/piechart.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     LinechartComponent,
-    StatsComponent
+    StatsComponent,
+    AreaComponent,
+    PiechartComponent
   ],
   exports: [
     DashboardComponent,

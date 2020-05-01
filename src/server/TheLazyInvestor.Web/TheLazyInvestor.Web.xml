@@ -80,5 +80,13 @@
             <param name="id">The record's id</param>
             <returns>An instance of <see cref="T:Microsoft.AspNetCore.Mvc.ActionResult"/></returns>
         </member>
+        <member name="M:TheLazyInvestor.Web.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment,Microsoft.Extensions.Options.IOptions{TheLazyInvestor.Web.AppSettings})">
+            <summary>
+            This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+            <param name="appSettings"></param>
+        </member>
     </members>
 </doc>
