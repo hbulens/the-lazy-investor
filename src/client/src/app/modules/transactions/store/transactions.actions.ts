@@ -4,6 +4,7 @@ import { Transaction } from './transactions.model';
 
 export const FETCH_TRANSACTIONS = '[Transactions] Fetch Transactions';
 export const SET_TRANSACTIONS = '[Transactions] Set Transactions';
+export const SET_TRANSACTION = '[Transactions] Set Transaction';
 
 export const ADD_TRANSACTION = '[Transactions] Add Transaction';
 export const UPDATE_TRANSACTION = '[Transactions] Update Transaction';
@@ -15,6 +16,12 @@ export class SetTransactions implements Action {
   readonly type = SET_TRANSACTIONS;
 
   constructor(public payload: Transaction[]) { }
+}
+
+export class SetTransaction implements Action {
+  readonly type = SET_TRANSACTION;
+
+  constructor(public payload: Transaction) { }
 }
 
 export class FetchTransactions implements Action {
@@ -30,7 +37,7 @@ export class AddTransaction implements Action {
 export class UpdateTransaction implements Action {
   readonly type = UPDATE_TRANSACTION;
 
-  constructor(public payload: { index: number; newTransaction: Transaction }) { }
+  constructor(public payload: { index: number; updatedTransaction: Transaction }) { }
 }
 
 export class DeleteTransaction implements Action {

@@ -1,94 +1,98 @@
 var single = [
   {
-    "name": "Germany",
+    "name": "IWDA",
     "value": 8940000
   },
   {
-    "name": "USA",
+    "name": "EMIM",
     "value": 5000000
   },
   {
-    "name": "France",
+    "name": "IMAE",
     "value": 7200000
   },
   {
-    "name": "UK",
+    "name": "CSPX",
     "value": 5200000
   },
   {
-    "name": "Italy",
+    "name": "CEMU",
     "value": 7700000
   },
   {
-    "name": "Spain",
+    "name": "WSML",
     "value": 4300000
   }
 ];
 
 var multi = [
   {
-    "name": "Germany",
+    "name": "IWDA",
     "series": [
       {
-        "name": "1990",
-        "value": 62000000
+        "name": "02/2020",
+        "value": 57.38
       },
       {
-        "name": "2010",
-        "value": 73000000
+        "name": "03/2020",
+        "value": 52.37
       },
       {
-        "name": "2011",
-        "value": 89400000
+        "name": "04/2020",
+        "value": 50.52
       }
     ]
   },
 
   {
-    "name": "USA",
+    "name": "EMIM",
     "series": [
       {
-        "name": "1990",
-        "value": 250000000
+        "name": "02/2020",
+        "value": 57.38
       },
       {
-        "name": "2010",
-        "value": 309000000
+        "name": "03/2020",
+        "value": 52.37
       },
       {
-        "name": "2011",
-        "value": 311000000
+        "name": "04/2020",
+        "value": 50.52
       }
     ]
   },
 
   {
-    "name": "France",
+    "name": "IMAE",
     "series": [
       {
-        "name": "1990",
-        "value": 58000000
+        "name": "02/2020",
+        "value": 56.9
       },
       {
-        "name": "2010",
-        "value": 50000020
+        "name": "03/2020",
+        "value": 50.81
       },
       {
-        "name": "2011",
-        "value": 58000000
+        "name": "04/2020",
+        "value": 46.21
       }
     ]
   },
   {
-    "name": "UK",
+    "name": "CSPX",
     "series": [
       {
-        "name": "1990",
-        "value": 57000000
+        "name": "02/2020",
+        "value": 27.38
       },
       {
-        "name": "2010",
-        "value": 62000000
+        "name": "03/2020",
+        "value": 32.37
+      },
+      {
+        "name": "04/2020",
+        "value": 40.52
       }
     ]
   }

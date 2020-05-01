@@ -1,3 +1,5 @@
+import { AgGridModule } from 'ag-grid-angular';
+
 import { LayoutModule } from '@angular/cdk/layout';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -21,9 +23,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AngularMaterialModule } from './core/angular-material.module';
-import { FooterComponent } from './core/footer/footer.component';
-import { NavbarComponent } from './core/header/navbar.component';
+import { AngularMaterialModule } from './layout/angular-material.module';
+import { FooterComponent } from './layout/footer/footer.component';
+import { NavbarComponent } from './layout/header/navbar.component';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { PortfoliosModule } from './modules/portfolios/portfolios.module';
 import { PortfoliosEffects } from './modules/portfolios/store/portfolios.effects';

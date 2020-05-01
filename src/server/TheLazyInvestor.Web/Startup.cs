@@ -89,6 +89,9 @@ namespace TheLazyInvestor.Web
 
             app.UseAuthorization();
 
+            string[] origins = { "http://localhost:4200" }; 
+            app.UseCors(b => b.AllowAnyMethod().AllowAnyHeader().WithOrigins(origins));
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

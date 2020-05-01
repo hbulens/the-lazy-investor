@@ -17,7 +17,7 @@
         </member>
         <member name="M:TheLazyInvestor.Web.Api.PortfolioController.Get">
             <summary>
-            Gets a collection of <see cref="T:TheLazyInvestor.Core.Model.Portfolio"/>
+            Gets a collection of <see cref="T:TheLazyInvestor.Core.Model.Portfolio"/> instances
             </summary>
             <returns>A collection of <see cref="T:TheLazyInvestor.Core.Model.Portfolio"/> instances</returns>
         </member>
@@ -55,7 +55,7 @@
         </member>
         <member name="M:TheLazyInvestor.Web.Api.TransactionController.Get">
             <summary>
-            Gets a collection of <see cref="T:TheLazyInvestor.Core.Model.Transaction"/>
+            Gets a collection of <see cref="T:TheLazyInvestor.Core.Model.Transaction"/> instances
             </summary>
             <returns>A collection of <see cref="T:TheLazyInvestor.Core.Model.Transaction"/> instances</returns>
         </member>

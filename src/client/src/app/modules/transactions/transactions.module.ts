@@ -15,6 +15,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { TransactionsComponent } from './transactions.component';
 import { EffectsModule } from '@ngrx/effects';
 import { TransactionsEffects } from './store/transactions.effects';
+import { AgGridModule } from 'ag-grid-angular';
 
 @NgModule({
   declarations: [TransactionsComponent],
@@ -32,7 +33,8 @@ import { TransactionsEffects } from './store/transactions.effects';
     MatSortModule,
     MatGridListModule,
     MatCardModule,
-    MatMenuModule
+    MatMenuModule,
+    AgGridModule.withComponents([])
   ]
 })
 export class TransactionsModule { }

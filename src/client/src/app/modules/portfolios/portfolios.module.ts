@@ -13,6 +13,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 
 import { PortfoliosComponent } from './portfolios.component';
+import { AgGridModule } from 'ag-grid-angular';
 
 @NgModule({
   declarations: [PortfoliosComponent],
@@ -30,7 +31,8 @@ import { PortfoliosComponent } from './portfolios.component';
     MatSortModule,
     MatGridListModule,
     MatCardModule,
-    MatMenuModule
+    MatMenuModule,
+    AgGridModule.withComponents([])
   ]
 })
 export class PortfoliosModule { }

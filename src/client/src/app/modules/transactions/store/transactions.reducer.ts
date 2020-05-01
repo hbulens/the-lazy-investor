@@ -22,22 +22,21 @@ export function transactionsReducer(state: State = initialState, action: Transac
         transactions: [...state.transactions, action.payload]
       };
     case TransactionActions.UPDATE_TRANSACTION:
-      const updatedTransaction = {
-        ...state.transactions[action.payload.index],
-        ...action.payload.newTransaction
-      };
+      const transactions = [...state.transactions];
+      const updatedItemIndex = state.transactions.findIndex(x => x.id === action.payload.index);
 
-      const updatedTransactions = [...state.transactions];
-      updatedTransactions[action.payload.index] = updatedTransaction;
+      if (updatedItemIndex > -1) {
+        transactions[updatedItemIndex] = action.payload.updatedTransaction;
+      }
 
       return {
         ...state,
-        transactions: updatedTransactions
+        transactions
       };
     case TransactionActions.DELETE_TRANSACTION:
       return {
         ...state,
-        transactions: state.transactions.filter((transaction, index) => index !== action.payload)
+        transactions: state.transactions.filter(transaction => transaction.id !== action.payload)
       };
     default:
       return state;

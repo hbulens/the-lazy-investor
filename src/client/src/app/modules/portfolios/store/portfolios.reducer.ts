@@ -16,28 +16,30 @@ export function portfoliosReducer(state: State = initialState, action: Portfolio
         ...state,
         portfolios: [...action.payload]
       };
+
+    case PortfolioActions.SET_PORTFOLIO:
+      return state;
     case PortfolioActions.ADD_PORTFOLIO:
       return {
         ...state,
         portfolios: [...state.portfolios, action.payload]
       };
     case PortfolioActions.UPDATE_PORTFOLIO:
-      const updatedPortfolio = {
-        ...state.portfolios[action.payload.index],
-        ...action.payload.newPortfolio
-      };
+      const portfolios = [...state.portfolios];
+      const updatedItemIndex = state.portfolios.findIndex(x => x.id === action.payload.index);
 
-      const updatedPortfolios = [...state.portfolios];
-      updatedPortfolios[action.payload.index] = updatedPortfolio;
+      if (updatedItemIndex > -1) {
+        portfolios[updatedItemIndex] = action.payload.updatedPortfolio;
+      }
 
       return {
         ...state,
-        portfolios: updatedPortfolios
+        portfolios
       };
     case PortfolioActions.DELETE_PORTFOLIO:
       return {
         ...state,
-        portfolios: state.portfolios.filter((portfolio, index) => index !== action.payload)
+        portfolios: state.portfolios.filter(portfolio => portfolio.id !== action.payload)
       };
     default:
       return state;

@@ -4,6 +4,7 @@ import { Portfolio } from './portfolios.model';
 
 export const FETCH_PORTFOLIOS = '[Portfolios] Fetch Portfolios';
 export const SET_PORTFOLIOS = '[Portfolios] Set Portfolios';
+export const SET_PORTFOLIO = '[Portfolios] Set Portfolio';
 
 export const ADD_PORTFOLIO = '[Portfolios] Add Portfolio';
 export const UPDATE_PORTFOLIO = '[Portfolios] Update Portfolio';
@@ -15,6 +16,12 @@ export class SetPortfolios implements Action {
   readonly type = SET_PORTFOLIOS;
 
   constructor(public payload: Portfolio[]) { }
+}
+
+export class SetPortfolio implements Action {
+  readonly type = SET_PORTFOLIO;
+
+  constructor(public payload: Portfolio) { }
 }
 
 export class FetchPortfolios implements Action {
@@ -30,7 +37,7 @@ export class AddPortfolio implements Action {
 export class UpdatePortfolio implements Action {
   readonly type = UPDATE_PORTFOLIO;
 
-  constructor(public payload: { index: number; newPortfolio: Portfolio }) { }
+  constructor(public payload: { index: number; updatedPortfolio: Portfolio }) { }
 }
 
 export class DeletePortfolio implements Action {
@@ -45,6 +52,7 @@ export class StorePortfolios implements Action {
 
 export type PortfoliosActions =
   | SetPortfolios
+  | SetPortfolio
   | FetchPortfolios
   | AddPortfolio
   | UpdatePortfolio
