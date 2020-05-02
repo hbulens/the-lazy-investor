@@ -22,7 +22,9 @@ export class TransactionsComponent implements OnInit {
   rowData: Observable<Transaction[]>;
   columnDefs = this.getColumns();
 
-  constructor(private store: Store<fromApp.AppState>, public dialog: MatDialog) {
+  constructor(
+    private store: Store<fromApp.AppState>,
+    public dialog: MatDialog) {
   }
 
   ngOnInit() {

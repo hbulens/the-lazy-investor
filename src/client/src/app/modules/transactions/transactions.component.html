@@ -10,7 +10,8 @@
   </div>
 
   <mat-spinner *ngIf="(rowData | async)?.length == 0"></mat-spinner>
-  <ag-grid-angular *ngIf="(rowData | async)?.length > 0" domLayout='autoHeight' class="ag-theme-material" rowSelection="multiple" checkboxSelection="true"
+  <ag-grid-angular *ngIf="(rowData | async)?.length > 0" domLayout='autoHeight' class="ag-theme-material"
+    pagination="true" paginationPageSize="10" rowSelection="multiple" checkboxSelection="true"
     [rowData]="rowData | async" [columnDefs]="columnDefs" (gridReady)="onGridReady($event)">
   </ag-grid-angular>
 </div>

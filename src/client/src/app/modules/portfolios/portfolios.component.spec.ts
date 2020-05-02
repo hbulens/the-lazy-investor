@@ -8,6 +8,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 
 import { PortfoliosComponent } from './portfolios.component';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 
 describe('PortfoliosComponent', () => {
   let component: PortfoliosComponent;
@@ -23,7 +24,11 @@ describe('PortfoliosComponent', () => {
         MatTableModule,
         HttpClientTestingModule
       ],
-      providers: [provideMockStore({})]
+      providers: [
+        provideMockStore({}),
+        { provide: MAT_DIALOG_DATA, useValue: {} },
+        { provide: MatDialog, useValue: {} }
+      ]
     }).compileComponents();
   }));
 

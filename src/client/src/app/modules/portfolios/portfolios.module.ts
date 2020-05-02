@@ -16,13 +16,19 @@ import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { PortfoliosComponent } from './portfolios.component';
+import { CreatedialogComponent } from './components/createdialog/createdialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [PortfoliosComponent],
+  declarations: [PortfoliosComponent, CreatedialogComponent],
   exports: [PortfoliosComponent],
   imports: [
     CommonModule,
-    CommonModule,
+    FormsModule,
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
@@ -35,6 +41,10 @@ import { PortfoliosComponent } from './portfolios.component';
     MatCardModule,
     MatMenuModule,
     MatProgressSpinnerModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
     AgGridModule.withComponents([])
   ]
 })

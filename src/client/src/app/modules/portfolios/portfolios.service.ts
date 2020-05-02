@@ -39,6 +39,7 @@ export class PortfoliosService implements Service<Portfolio> {
   delete(item: Portfolio): Observable<Portfolio> {
     return this.http.delete<Portfolio>(`${this.url}/${item.id}`)
       .pipe(
+        map(_ => new Portfolio(item.id)),
         catchError(this.handleError)
       );
   }

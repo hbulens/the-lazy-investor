@@ -19,17 +19,23 @@ export function portfoliosReducer(state: State = initialState, action: Portfolio
 
     case PortfolioActions.SET_PORTFOLIO:
       return state;
+
     case PortfolioActions.ADD_PORTFOLIO:
+      return state;
+
+    case PortfolioActions.ADDED_PORTFOLIO:
       return {
         ...state,
-        portfolios: [...state.portfolios, action.payload]
+        portfolios: [action.payload, ...state.portfolios]
       };
     case PortfolioActions.UPDATE_PORTFOLIO:
+      return state;
+    case PortfolioActions.UPDATED_PORTFOLIO:
       const portfolios = [...state.portfolios];
-      const updatedItemIndex = state.portfolios.findIndex(x => x.id === action.payload.index);
+      const updatedItemIndex = state.portfolios.findIndex(x => x.id === action.payload.id);
 
       if (updatedItemIndex > -1) {
-        portfolios[updatedItemIndex] = action.payload.updatedPortfolio;
+        portfolios[updatedItemIndex] = action.payload;
       }
 
       return {
@@ -37,6 +43,8 @@ export function portfoliosReducer(state: State = initialState, action: Portfolio
         portfolios
       };
     case PortfolioActions.DELETE_PORTFOLIO:
+      return state;
+    case PortfolioActions.DELETED_PORTFOLIO:
       return {
         ...state,
         portfolios: state.portfolios.filter(portfolio => portfolio.id !== action.payload)

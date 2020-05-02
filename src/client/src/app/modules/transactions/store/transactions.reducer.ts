@@ -19,7 +19,7 @@ export function transactionsReducer(state: State = initialState, action: Transac
     case TransactionActions.SET_TRANSACTION:
       return {
         ...state,
-        transactions: [...state.transactions, action.payload]
+        transactions: [action.payload, ...state.transactions]
       };
     case TransactionActions.UPDATED_TRANSACTION:
       const transactions = [...state.transactions];

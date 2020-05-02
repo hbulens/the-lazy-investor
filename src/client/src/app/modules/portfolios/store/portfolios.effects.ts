@@ -24,21 +24,21 @@ export class PortfoliosEffects {
   createPortfolio = this.actions$.pipe(
     ofType(PortfoliosActions.ADD_PORTFOLIO),
     switchMap((action: AddPortfolio) => this.service.create(action.payload)),
-    map(portfolio => new PortfoliosActions.SetPortfolio(portfolio))
+    map(transaction => new PortfoliosActions.AddedPortfolio(transaction))
   );
 
   @Effect()
   updatePortfolio = this.actions$.pipe(
     ofType(PortfoliosActions.UPDATE_PORTFOLIO),
     switchMap((action: UpdatePortfolio) => this.service.update(action.payload.updatedPortfolio)),
-    map(portfolio => new PortfoliosActions.SetPortfolio(portfolio))
+    map(portfolio => new PortfoliosActions.UpdatedPortfolio(portfolio))
   );
 
   @Effect()
   deletePortfolio = this.actions$.pipe(
     ofType(PortfoliosActions.DELETE_PORTFOLIO),
     switchMap((action: DeletePortfolio) => this.service.delete(new Portfolio(action.payload, ''))),
-    map(portfolio => new PortfoliosActions.SetPortfolio(portfolio))
+    map(portfolio => new PortfoliosActions.DeletedPortfolio(portfolio.id))
   );
 
   constructor(
