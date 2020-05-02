@@ -2,14 +2,14 @@ import * as moment from 'moment/moment';
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 
 import * as fromApp from '../../store/app.reducer';
+import { CreatedialogComponent } from './components/createdialog/createdialog.component';
 import * as TransactionsActions from './store/transactions.actions';
 import { Transaction } from './store/transactions.model';
-import { CreatedialogComponent } from './components/createdialog/createdialog.component';
 
 @Component({
   selector: 'app-transactions',

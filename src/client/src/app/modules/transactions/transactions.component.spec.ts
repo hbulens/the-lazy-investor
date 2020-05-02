@@ -1,6 +1,7 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
@@ -21,9 +22,13 @@ describe('TransactionsComponent', () => {
         MatPaginatorModule,
         MatSortModule,
         MatTableModule,
-        HttpClientTestingModule
+        HttpClientTestingModule,
       ],
-      providers: [HttpClient, provideMockStore({})]
+      providers: [
+        provideMockStore({}),
+        { provide: MAT_DIALOG_DATA, useValue: {} },
+        { provide: MatDialog, useValue: {} }
+      ]
     }).compileComponents();
   }));
 

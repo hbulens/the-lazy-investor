@@ -23,7 +23,7 @@ describe('PortfoliosComponent', () => {
         MatTableModule,
         HttpClientTestingModule
       ],
-      providers: [HttpClient, provideMockStore({})]
+      providers: [provideMockStore({})]
     }).compileComponents();
   }));
 

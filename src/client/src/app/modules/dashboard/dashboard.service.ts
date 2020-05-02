@@ -12,7 +12,7 @@ export class Stat {
 @Injectable({
   providedIn: 'root'
 })
-export class DashboardsService {
+export class DashboardService {
 
   private url = `https://alpha-vantage.p.rapidapi.com/query?symbol=IWDA&function=GLOBAL_QUOTE`;
 
