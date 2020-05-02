@@ -22,6 +22,22 @@ var single = [
   {
     "name": "WSML",
     "value": 4300000
+  },
+  {
+    "name": "WSML",
+    "value": 4300000
+  },
+  {
+    "name": "WSML",
+    "value": 4300000
+  },
+  {
+    "name": "WSML",
+    "value": 4300000
+  },
+  {
+    "name": "WSML",
+    "value": 4300000
   }
 ];
 
@@ -336,19 +352,19 @@ var multi2 = [
 
 var multi4 = [
   {
-    "name": "Germany",
+    "name": "IWDA",
     "value": 8940000
   },
   {
-    "name": "USA",
+    "name": "EMIM",
     "value": 5000000
   },
   {
-    "name": "France",
+    "name": "FB",
     "value": 7200000
   },
   {
-    "name": "UK",
+    "name": "TESLA",
     "value": 6200000
   }
 ];

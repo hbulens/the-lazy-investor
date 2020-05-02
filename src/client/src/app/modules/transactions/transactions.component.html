@@ -2,12 +2,15 @@
 
   <div style="margin-bottom: 10px">
     <div>
-      <button (click)="createTransaction()" mat-mini-fab color="primary" style="margin-right: 5px"><span
+      <button (click)="openDialog()" mat-mini-fab color="primary" style="margin-right: 5px"><span
           class="material-icons">add</span></button>
-      <button (click)="removeTransaction()" mat-mini-fab color="warn"><span class="material-icons">remove</span></button>
+      <button (click)="removeTransaction()" mat-mini-fab color="warn"><span
+          class="material-icons">remove</span></button>
     </div>
   </div>
-  <ag-grid-angular domLayout='autoHeight' class="ag-theme-material" rowSelection="multiple" checkboxSelection="true"
+
+  <mat-spinner *ngIf="(rowData | async)?.length == 0"></mat-spinner>
+  <ag-grid-angular *ngIf="(rowData | async)?.length > 0" domLayout='autoHeight' class="ag-theme-material" rowSelection="multiple" checkboxSelection="true"
     [rowData]="rowData | async" [columnDefs]="columnDefs" (gridReady)="onGridReady($event)">
   </ag-grid-angular>
 </div>

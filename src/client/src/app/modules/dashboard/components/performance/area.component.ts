@@ -17,7 +17,7 @@ export class AreaComponent implements OnInit {
   showYAxisLabel: boolean = true;
   showXAxisLabel: boolean = true;
   xAxisLabel: string = 'Year';
-  yAxisLabel: string = 'Population';
+  yAxisLabel: string = 'Amount';
   timearea: boolean = true;
 
   colorScheme = {

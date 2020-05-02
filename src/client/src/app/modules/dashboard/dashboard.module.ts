@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { DashboardComponent } from './dashboard.component';
-import { LinechartComponent } from './components/linechart/linechart.component';
-import { StatsComponent } from './components/stats/stats.component';
+import { LinechartComponent } from './components/timeline/linechart.component';
+import { StatsComponent } from './components/top-instruments/stats.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -16,8 +16,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { AreaComponent } from './components/area/area.component';
-import { PiechartComponent } from './components/piechart/piechart.component';
+import { AreaComponent } from './components/performance/area.component';
+import { PiechartComponent } from './components/distribution/piechart.component';
 
 @NgModule({
   declarations: [

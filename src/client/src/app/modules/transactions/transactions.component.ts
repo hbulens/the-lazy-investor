@@ -1,125 +1,28 @@
-import { Subscription, Observable } from 'rxjs';
+import * as moment from 'moment/moment';
+import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 
 import * as fromApp from '../../store/app.reducer';
 import * as TransactionsActions from './store/transactions.actions';
 import { Transaction } from './store/transactions.model';
+import { CreatedialogComponent } from './components/createdialog/createdialog.component';
 
 @Component({
   selector: 'app-transactions',
   templateUrl: './transactions.component.html',
   styleUrls: ['./transactions.component.scss']
 })
-export class TransactionsComponent implements OnInit, OnDestroy {
-
-  constructor(private store: Store<fromApp.AppState>) { }
-
-  subscription: Subscription;
-
-  columnDefs = [{
-    field: 'portfolioid',
-    flex: 1,
-    editable: true,
-    sortable: true,
-    filter: true,
-    headerCheckboxSelection: true,
-    headerCheckboxSelectionFilteredOnly: true,
-    checkboxSelection: true,
-    valueSetter: ({ newValue, data }) => {
-      this.store.dispatch(new TransactionsActions.UpdateTransaction({
-        index: data.id,
-        updatedTransaction: {
-          ...data,
-          portfolioId: parseInt(newValue)
-        }
-      }));
-    },
-    cellRenderer(params) {
-      return '<b>' + params.data?.portfolio?.name + '</b>';
-    }
-  }, {
-    field: 'ticker',
-    flex: 1,
-    editable: true,
-    sortable: true,
-    filter: true,
-    valueSetter: ({ newValue, data }) => {
-      this.store.dispatch(new TransactionsActions.UpdateTransaction({
-        index: data.id,
-        updatedTransaction: {
-          ...data,
-          ticker: newValue
-        }
-      }));
-    }
-  }, {
-    field: 'date',
-    flex: 1,
-    editable: true,
-    sortable: true,
-    filter: true,
-    valueSetter: ({ newValue, data }) => {
-      this.store.dispatch(new TransactionsActions.UpdateTransaction({
-        index: data.id,
-        updatedTransaction: {
-          ...data,
-          date: newValue
-        }
-      }));
-    }
-  }, {
-    field: 'price',
-    flex: 1,
-    editable: true,
-    sortable: true,
-    filter: true,
-    valueSetter: ({ newValue, data }) => {
-      this.store.dispatch(new TransactionsActions.UpdateTransaction({
-        index: data.id,
-        updatedTransaction: {
-          ...data,
-          price: parseInt(newValue)
-        }
-      }));
-    }
-  }, {
-    field: 'amount',
-    flex: 1,
-    editable: true,
-    sortable: true,
-    filter: true,
-    valueSetter: ({ newValue, data }) => {
-      this.store.dispatch(new TransactionsActions.UpdateTransaction({
-        index: data.id,
-        updatedTransaction: {
-          ...data,
-          amount: parseInt(newValue)
-        }
-      }));
-    }
-  }]
+export class TransactionsComponent implements OnInit {
+  private gridApi;
 
   rowData: Observable<Transaction[]>;
-  private gridApi;
-  private gridColumnApi;
+  columnDefs = this.getColumns();
 
-  createTransaction() {
-    this.store.dispatch(new TransactionsActions.AddTransaction(new Transaction(0, 'New transaction', new Date(), 0, 0)));
-  }
-
-  removeTransaction() {
-    const selectedRows = this.gridApi.getSelectedRows();
-    for (const selectedRow of selectedRows) {
-      this.store.dispatch(new TransactionsActions.DeleteTransaction(selectedRow.id));
-    }
-  }
-
-  onGridReady(params) {
-    this.gridApi = params.api;
-    this.gridColumnApi = params.columnApi;
+  constructor(private store: Store<fromApp.AppState>, public dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -130,6 +33,88 @@ export class TransactionsComponent implements OnInit, OnDestroy {
     this.store.dispatch(new TransactionsActions.FetchTransactions());
   }
 
-  ngOnDestroy() {
+  getColumns(): Array<any> {
+    return [
+      {
+        field: 'portfolioId',
+        headerName: 'Portfolio',
+        flex: 1,
+        editable: false,
+        sortable: true,
+        filter: true,
+        valueSetter: ({ newValue, data }) => this.updateTransaction<number>(data, 'portfolioId', parseInt(newValue)),
+        cellRenderer(params) {
+          return '<b>' + params.data?.portfolio?.name + '</b>';
+        }
+      },
+      {
+        field: 'ticker',
+        flex: 1,
+        editable: true,
+        sortable: true,
+        filter: true,
+        valueSetter: ({ newValue, data }) => this.updateTransaction<Date>(data, 'ticker', newValue)
+      }, {
+        field: 'date',
+        // cellEditor: 'datepicker',
+        flex: 1,
+        editable: true,
+        sortable: true,
+        filter: true,
+        sort: 'desc',
+        valueSetter: ({ newValue, data }) => this.updateTransaction<string>(data, 'date', newValue),
+        cellRenderer: (data) => {
+          return moment(data.value).format('YYYY/MM/DD HH:mm');
+        }
+      }, {
+        field: 'price',
+        flex: 1,
+        editable: true,
+        sortable: true,
+        filter: true,
+        valueSetter: ({ newValue, data }) => this.updateTransaction<number>(data, 'price', parseInt(newValue))
+      }, {
+        field: 'amount',
+        flex: 1,
+        editable: true,
+        sortable: true,
+        filter: true,
+        valueSetter: ({ newValue, data }) => this.updateTransaction<number>(data, 'amount', parseInt(newValue))
+      }];
+  }
+
+  onGridReady(params): void {
+    this.gridApi = params.api;
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(CreatedialogComponent, { width: '300px', data: new Transaction() });
+    dialogRef.afterClosed().subscribe(x => {
+      if (x != null) {
+        const newTransaction = new Transaction(
+          x.id,
+          x.ticker,
+          new Date(x.date),
+          parseInt(x.amount),
+          parseInt(x.price),
+          parseInt(x.portfolioId)
+        );
+
+        this.store.dispatch(new TransactionsActions.AddTransaction(newTransaction));
+      }
+    });
+  }
+
+  updateTransaction<T>(data: Transaction, property: string, value: T) {
+    const updated = { ...data, [property]: value };
+    const updatedTransaction = Object.assign(new Transaction(), updated);
+    this.store.dispatch(new TransactionsActions.UpdateTransaction({ index: data.id, updatedTransaction }));
+  }
+
+  removeTransaction() {
+    const selectedRows = this.gridApi.getSelectedRows();
+    for (const selectedRow of selectedRows) {
+      this.store.dispatch(new TransactionsActions.DeleteTransaction(selectedRow.id));
+    }
   }
 }

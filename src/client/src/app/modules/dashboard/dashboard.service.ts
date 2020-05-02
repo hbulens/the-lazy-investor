@@ -1,52 +1,28 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError, of } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { Transaction } from './store/transactions.model';
 import { Service } from "../../core/service";
 import { catchError, retry, map } from 'rxjs/operators';
 
+export class Stat {
+
+}
 
 @Injectable({
   providedIn: 'root'
 })
-export class TransactionsService implements Service<Transaction> {
+export class DashboardsService {
 
-  private url = `${environment.api.url}/api/transaction`;
+  private url = `https://alpha-vantage.p.rapidapi.com/query?symbol=IWDA&function=GLOBAL_QUOTE`;
 
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
   constructor(private http: HttpClient) { }
 
-  fetch(): Observable<Transaction[]> {
-    return this.http.get<Transaction[]>(this.url);
-  }
-
-  create(item: Transaction): Observable<Transaction> {
-    return this.http.post<Transaction>(this.url, item, this.httpOptions)
-      .pipe(
-        catchError(this.handleError)
-      );
-  }
-
-  update(item: Transaction): Observable<Transaction> {
-    if (item.id === 0) {
-      return this.create(item);
-    }
-
-    return this.http.put<Transaction>(this.url, item, this.httpOptions)
-      .pipe(
-        catchError(this.handleError)
-      );
-  }
-
-  delete(item: Transaction): Observable<Transaction> {
-    return this.http.delete<Transaction>(`${this.url}/${item.id}`)
-      .pipe(
-        map(_ => new Transaction(item.id)),
-        catchError(this.handleError)
-      );
+  fetch(): Observable<Stat[]> {
+    return this.http.get<Stat[]>(this.url);
   }
 
   private handleError(error: HttpErrorResponse) {

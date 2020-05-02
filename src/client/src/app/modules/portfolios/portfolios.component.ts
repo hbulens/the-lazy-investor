@@ -25,9 +25,6 @@ export class PortfoliosComponent implements OnInit, OnDestroy {
     editable: true,
     sortable: true,
     filter: true,
-    headerCheckboxSelection: true,
-    headerCheckboxSelectionFilteredOnly: true,
-    checkboxSelection: true,
     valueSetter: ({ newValue, data }) => {
       this.store.dispatch(new PortfoliosActions.UpdatePortfolio({
         index: data.id,

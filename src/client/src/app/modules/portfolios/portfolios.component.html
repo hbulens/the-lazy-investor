@@ -7,6 +7,8 @@
       <button (click)="removePortfolio()" mat-mini-fab color="warn"><span class="material-icons">remove</span></button>
     </div>
   </div>
+
+  <mat-spinner *ngIf="(rowData | async)?.length == 0"></mat-spinner>
   <ag-grid-angular domLayout='autoHeight' class="ag-theme-material" rowSelection="multiple" checkboxSelection="true"
     [rowData]="rowData | async" [columnDefs]="columnDefs" (gridReady)="onGridReady($event)">
   </ag-grid-angular>

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -19,6 +21,9 @@ namespace TheLazyInvestor.Web.Repositories
 
         public virtual async Task<IEnumerable<T>> GetAllAsync()
             => await Context.Set<T>().ToListAsync();
+
+        public virtual async Task<T> GetOneAsync(Expression<Func<T,bool>> filter)
+            => await Context.Set<T>().Where(filter).FirstOrDefaultAsync();
 
         public virtual async Task<T> CreateAsync(T entity)
         {

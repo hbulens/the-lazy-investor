@@ -31,14 +31,14 @@ export class TransactionsEffects {
   updateTransaction = this.actions$.pipe(
     ofType(TransactionsActions.UPDATE_TRANSACTION),
     switchMap((action: UpdateTransaction) => this.service.update(action.payload.updatedTransaction)),
-    map(transaction => new TransactionsActions.SetTransaction(transaction))
+    map(transaction => new TransactionsActions.UpdatedTransaction(transaction))
   );
 
   @Effect()
   deleteTransaction = this.actions$.pipe(
     ofType(TransactionsActions.DELETE_TRANSACTION),
     switchMap((action: DeleteTransaction) => this.service.delete(new Transaction(action.payload, '', null, null, null))),
-    map(transaction => new TransactionsActions.SetTransaction(transaction))
+    map(transaction => new TransactionsActions.DeletedTransaction(transaction.id))
   );
 
   constructor(

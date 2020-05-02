@@ -14,7 +14,7 @@ export class PiechartComponent implements OnInit {
   gradient: boolean = true;
   showLegend: boolean = true;
   showLabels: boolean = true;
-  isDoughnut: boolean = false;
+  isDoughnut: boolean = true;
 
   colorScheme = {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']

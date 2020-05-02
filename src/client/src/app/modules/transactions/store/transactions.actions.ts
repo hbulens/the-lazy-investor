@@ -8,7 +8,9 @@ export const SET_TRANSACTION = '[Transactions] Set Transaction';
 
 export const ADD_TRANSACTION = '[Transactions] Add Transaction';
 export const UPDATE_TRANSACTION = '[Transactions] Update Transaction';
+export const UPDATED_TRANSACTION = '[Transactions] Updated Transaction';
 export const DELETE_TRANSACTION = '[Transactions] Delete Transaction';
+export const DELETED_TRANSACTION = '[Transactions] Deleted Transaction';
 
 export const STORE_TRANSACTIONS = '[Transactions] Store Transactions';
 
@@ -40,8 +42,20 @@ export class UpdateTransaction implements Action {
   constructor(public payload: { index: number; updatedTransaction: Transaction }) { }
 }
 
+export class UpdatedTransaction implements Action {
+  readonly type = UPDATED_TRANSACTION;
+
+  constructor(public payload: Transaction) { }
+}
+
 export class DeleteTransaction implements Action {
   readonly type = DELETE_TRANSACTION;
+
+  constructor(public payload: number) { }
+}
+
+export class DeletedTransaction implements Action {
+  readonly type = DELETED_TRANSACTION;
 
   constructor(public payload: number) { }
 }
@@ -55,5 +69,8 @@ export type TransactionsActions =
   | FetchTransactions
   | AddTransaction
   | UpdateTransaction
+  | UpdatedTransaction
   | DeleteTransaction
-  | StoreTransactions;
+  | DeletedTransaction
+  | StoreTransactions
+  | SetTransaction;

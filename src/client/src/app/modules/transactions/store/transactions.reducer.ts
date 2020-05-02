@@ -16,24 +16,24 @@ export function transactionsReducer(state: State = initialState, action: Transac
         ...state,
         transactions: [...action.payload]
       };
-    case TransactionActions.ADD_TRANSACTION:
+    case TransactionActions.SET_TRANSACTION:
       return {
         ...state,
         transactions: [...state.transactions, action.payload]
       };
-    case TransactionActions.UPDATE_TRANSACTION:
+    case TransactionActions.UPDATED_TRANSACTION:
       const transactions = [...state.transactions];
-      const updatedItemIndex = state.transactions.findIndex(x => x.id === action.payload.index);
+      const updatedItemIndex = state.transactions.findIndex(x => x.id === action.payload.id);
 
       if (updatedItemIndex > -1) {
-        transactions[updatedItemIndex] = action.payload.updatedTransaction;
+        transactions[updatedItemIndex] = action.payload;
       }
 
       return {
         ...state,
         transactions
       };
-    case TransactionActions.DELETE_TRANSACTION:
+    case TransactionActions.DELETED_TRANSACTION:
       return {
         ...state,
         transactions: state.transactions.filter(transaction => transaction.id !== action.payload)
