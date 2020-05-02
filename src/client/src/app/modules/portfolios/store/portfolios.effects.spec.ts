@@ -20,7 +20,6 @@ describe('PortfoliosEffects', () => {
       providers: [
         PortfoliosEffects,
         provideMockActions(() => actions$),
-        HttpClient,
         provideMockStore({})
       ]
     });

@@ -23,7 +23,7 @@ namespace TheLazyInvestor.Core
         public async Task<Transaction> Handle(UpdateTransactionCommand command, CancellationToken cancellationToken)
         {
             Entities.Transaction updatedTransaction = await _transactionRepository.UpdateAsync(_mapper.Map<Entities.Transaction>(command.Transaction));
-            return _mapper.Map<Transaction>(updatedTransaction);
+            return _mapper.Map<Transaction>(await _transactionRepository.GetOneAsync(x => x.Id == updatedTransaction.Id));
         }
     }
 }

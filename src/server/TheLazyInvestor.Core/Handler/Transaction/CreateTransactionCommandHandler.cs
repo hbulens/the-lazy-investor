@@ -27,7 +27,7 @@ namespace TheLazyInvestor.Core
         {
             Entities.Transaction newTransaction = await _transactionRepository.CreateAsync(_mapper.Map<Entities.Transaction>(command.Transaction));
             _logger.LogDebug($"Created transaction with name {newTransaction.Ticker} identified by id {newTransaction.Id}");
-            return _mapper.Map<Transaction>(newTransaction);
+            return _mapper.Map<Transaction>(await _transactionRepository.GetOneAsync(x => x.Id == newTransaction.Id));
         }
     }
 }

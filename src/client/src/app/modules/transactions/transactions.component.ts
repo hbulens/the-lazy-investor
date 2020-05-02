@@ -1,59 +1,122 @@
-import { Subscription } from 'rxjs';
+import * as moment from 'moment/moment';
+import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTable } from '@angular/material/table';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 
 import * as fromApp from '../../store/app.reducer';
+import { CreatedialogComponent } from './components/createdialog/createdialog.component';
 import * as TransactionsActions from './store/transactions.actions';
 import { Transaction } from './store/transactions.model';
-import { TransactionsDataSource } from './transactions-datasource';
 
 @Component({
   selector: 'app-transactions',
   templateUrl: './transactions.component.html',
   styleUrls: ['./transactions.component.scss']
 })
-export class TransactionsComponent implements AfterViewInit, OnInit, OnDestroy {
+export class TransactionsComponent implements OnInit {
+  private gridApi;
 
-  constructor(private store: Store<fromApp.AppState>) { }
+  rowData: Observable<Transaction[]>;
+  columnDefs = this.getColumns();
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatTable) table: MatTable<Transaction>;
-  dataSource: TransactionsDataSource;
-
-  subscription: Subscription;
-
-  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name', 'date', 'price', 'amount'];
+  constructor(
+    private store: Store<fromApp.AppState>,
+    public dialog: MatDialog) {
+  }
 
   ngOnInit() {
-
-    this.subscription = this.store
+    this.rowData = this.store
       .select('transactions')
-      .pipe(map(transactionsState => transactionsState && transactionsState.transactions || []))
-      .subscribe((transactions: Transaction[]) => {
-        this.dataSource = new TransactionsDataSource(transactions, this.paginator, this.sort);
-        if (this.dataSource && this.table) {
-          this.table.dataSource = this.dataSource;
-        }
-      });
+      .pipe(map(transactionsState => transactionsState && transactionsState.transactions || []));
 
     this.store.dispatch(new TransactionsActions.FetchTransactions());
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
+  getColumns(): Array<any> {
+    return [
+      {
+        field: 'portfolioId',
+        headerName: 'Portfolio',
+        flex: 1,
+        editable: false,
+        sortable: true,
+        filter: true,
+        valueSetter: ({ newValue, data }) => this.updateTransaction<number>(data, 'portfolioId', parseInt(newValue)),
+        cellRenderer(params) {
+          return '<b>' + params.data?.portfolio?.name + '</b>';
+        }
+      },
+      {
+        field: 'ticker',
+        flex: 1,
+        editable: true,
+        sortable: true,
+        filter: true,
+        valueSetter: ({ newValue, data }) => this.updateTransaction<Date>(data, 'ticker', newValue)
+      }, {
+        field: 'date',
+        // cellEditor: 'datepicker',
+        flex: 1,
+        editable: true,
+        sortable: true,
+        filter: true,
+        sort: 'desc',
+        valueSetter: ({ newValue, data }) => this.updateTransaction<string>(data, 'date', newValue),
+        cellRenderer: (data) => {
+          return moment(data.value).format('YYYY/MM/DD HH:mm');
+        }
+      }, {
+        field: 'price',
+        flex: 1,
+        editable: true,
+        sortable: true,
+        filter: true,
+        valueSetter: ({ newValue, data }) => this.updateTransaction<number>(data, 'price', parseInt(newValue))
+      }, {
+        field: 'amount',
+        flex: 1,
+        editable: true,
+        sortable: true,
+        filter: true,
+        valueSetter: ({ newValue, data }) => this.updateTransaction<number>(data, 'amount', parseInt(newValue))
+      }];
   }
 
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
+  onGridReady(params): void {
+    this.gridApi = params.api;
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(CreatedialogComponent, { width: '300px', data: new Transaction() });
+    dialogRef.afterClosed().subscribe(x => {
+      if (x != null) {
+        const newTransaction = new Transaction(
+          x.id,
+          x.ticker,
+          new Date(x.date),
+          parseInt(x.amount),
+          parseInt(x.price),
+          parseInt(x.portfolioId)
+        );
+
+        this.store.dispatch(new TransactionsActions.AddTransaction(newTransaction));
+      }
+    });
+  }
+
+  updateTransaction<T>(data: Transaction, property: string, value: T) {
+    const updated = { ...data, [property]: value };
+    const updatedTransaction = Object.assign(new Transaction(), updated);
+    this.store.dispatch(new TransactionsActions.UpdateTransaction({ index: data.id, updatedTransaction }));
+  }
+
+  removeTransaction() {
+    const selectedRows = this.gridApi.getSelectedRows();
+    for (const selectedRow of selectedRows) {
+      this.store.dispatch(new TransactionsActions.DeleteTransaction(selectedRow.id));
+    }
   }
 }

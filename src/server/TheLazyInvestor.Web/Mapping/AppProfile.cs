@@ -8,7 +8,7 @@ namespace TheLazyInvestor.Web
         public AppProfile()
         {
             CreateMap<Portfolio, Core.Model.Portfolio>().ReverseMap();
-            CreateMap<Transaction, Core.Model.Transaction>().ReverseMap();
+            CreateMap<Transaction, Core.Model.Transaction>().ReverseMap().ForMember(x => x.Portfolio, y => y.Ignore());
         }
     }
 }

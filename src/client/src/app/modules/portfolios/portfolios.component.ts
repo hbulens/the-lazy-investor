@@ -1,59 +1,71 @@
-import { Subscription } from 'rxjs';
-import { map } from 'rxjs/operators';
-
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTable } from '@angular/material/table';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import * as fromApp from '../../store/app.reducer';
+import { CreatedialogComponent } from './components/createdialog/createdialog.component';
 import * as PortfoliosActions from './store/portfolios.actions';
 import { Portfolio } from './store/portfolios.model';
-import { PortfoliosDataSource } from './portfolios-datasource';
 
 @Component({
   selector: 'app-portfolios',
   templateUrl: './portfolios.component.html',
   styleUrls: ['./portfolios.component.scss']
 })
-export class PortfoliosComponent implements AfterViewInit, OnInit, OnDestroy {
+export class PortfoliosComponent implements OnInit {
+  private gridApi;
 
-  constructor(private store: Store<fromApp.AppState>) { }
+  rowData: Observable<Portfolio[]>;
+  columnDefs = this.getColumns();
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatTable) table: MatTable<Portfolio>;
-  dataSource: PortfoliosDataSource;
-
-  subscription: Subscription;
-
-  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name'];
+  constructor(
+    private store: Store<fromApp.AppState>,
+    public dialog: MatDialog) { }
 
   ngOnInit() {
-
-    this.subscription = this.store
+    this.rowData = this.store
       .select('portfolios')
-      .pipe(map(portfoliosState => portfoliosState && portfoliosState.portfolios || []))
-      .subscribe((portfolios: Portfolio[]) => {
-        this.dataSource = new PortfoliosDataSource(portfolios, this.paginator, this.sort);
-        if (this.dataSource && this.table) {
-          this.table.dataSource = this.dataSource;
-        }
-      });
+      .pipe(map(portfoliosState => portfoliosState && portfoliosState.portfolios || []));
 
     this.store.dispatch(new PortfoliosActions.FetchPortfolios());
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
+  getColumns(): Array<any> {
+    return [{
+      field: 'name',
+      flex: 1,
+      editable: true,
+      sortable: true,
+      filter: true,
+      valueSetter: ({ newValue, data }) => this.updatePortfolio<string>(data, 'name', newValue)
+    }];
   }
 
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
+  onGridReady(params) {
+    this.gridApi = params.api;
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(CreatedialogComponent, { width: '300px', data: new Portfolio() });
+    dialogRef.afterClosed().subscribe(x => {
+      if (x != null) {
+        const newPortfolio = new Portfolio(x.id, x.name);
+        this.store.dispatch(new PortfoliosActions.AddPortfolio(newPortfolio));
+      }
+    });
+  }
+
+  updatePortfolio<T>(data: Portfolio, property: string, value: T) {
+    const updated = { ...data, [property]: value };
+    const updatedPortfolio = Object.assign(new Portfolio(), updated);
+    this.store.dispatch(new PortfoliosActions.UpdatePortfolio({ index: data.id, updatedPortfolio }));
+  }
+
+  removePortfolio() {
+    const selectedRows = this.gridApi.getSelectedRows();
+    for (const selectedRow of selectedRows) {
+      this.store.dispatch(new PortfoliosActions.DeletePortfolio(selectedRow.id));
+    }
   }
 }

@@ -20,7 +20,6 @@ describe('TransactionsEffects', () => {
       providers: [
         TransactionsEffects,
         provideMockActions(() => actions$),
-        HttpClient,
         provideMockStore({})
       ]
     });

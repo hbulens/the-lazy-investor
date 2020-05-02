@@ -1,4 +1,20 @@
+@import "../node_modules/ag-grid-community/src/styles/ag-grid.scss";
+@import "../node_modules/ag-grid-community/src/styles/ag-theme-material/sass/ag-theme-material-mixin.scss";
+
 html, body {
   height: 100%;
   margin: 0;
+}
+
+.ag-theme-material {
+  @include ag-theme-material();
+}
+
+.moduleContainer {
+  padding:10px;
+}
+
+
+.chart-parent {
+  display: grid;
 }

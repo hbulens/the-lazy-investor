@@ -5,20 +5,47 @@
 
 The lazy investor is an investment portfolio management application for the average Joe who intends to hold his assets for a long time.
 
-![Screenshot](the-lazy-investor.png)
+![Screenshot](docs/assets/the-lazy-investor.png)
+
+The basic functions include the management of the portfolio and registering transactions.
+
+![Screenshot](docs/assets/the-lazy-investor-2.png)
+
+![Screenshot](docs/assets/the-lazy-investor-3.png)
+
+Metrics are the major asset of this application. A comprehensive dashboard should give the lazy investor all he needs to know for the time being.
 
 ## Getting Started
 
 This application is split into two distinct areas. Unsurprisingly, there's a front-end and a back-end attached to the lazy investor.
 
-To run the server, run the command `dotnet run` for the web project.
-To run the client, execute the command `yarn start`.
-
-### Prerequisites
-
 The front-end application is a simple Angular application. We recommend to use **yarn** as the package manager.
 
 The back-end system is a ASP.NET Core 3.x solution. It is recommended to have Visual Studio 2019 Community or higher.
+
+To run the server, run the command `dotnet run` for the web project.
+To run the client, execute the command `yarn start`.
+
+To connect the two applications, make sure the configuration is set correctly:
+
+appsettings.json:
+``` json
+{     
+  "AllowedOrigins": [
+    "http://localhost:4200"
+  ]
+}
+```
+
+environment.xxx.ts:
+
+```typescript
+export const environment = {
+  api:  {
+    url: "https://localhost:44350"
+  }
+};
+```
 
 ## Running the tests
 

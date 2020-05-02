@@ -1,0 +1,30 @@
+<div>
+  <h1 mat-dialog-title>New transaction</h1>
+
+  <mat-form-field>
+    <mat-select placeholder="Portfolio" [(ngModel)]="data.portfolioId">
+      <mat-option *ngFor="let portfolio of portfolios" [value]="portfolio.id">{{ portfolio.name }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Ticker" [(ngModel)]="data.ticker">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Date" [(ngModel)]="data.date">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Price" [(ngModel)]="data.price">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Amount" [(ngModel)]="data.amount">
+  </mat-form-field>
+
+  <div mat-dialog-actions>
+    <button mat-button (click)="onCancelClick()">Cancel</button>
+    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+  </div>
+</div>

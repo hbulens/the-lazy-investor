@@ -15,5 +15,7 @@ namespace TheLazyInvestor.Core.Model
         public float Price { get; set; }
 
         public int PortfolioId { get; set; }
+
+        public Portfolio Portfolio { get; set; }
     }
 }

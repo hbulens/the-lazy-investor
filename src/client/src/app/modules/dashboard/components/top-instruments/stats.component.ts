@@ -15,10 +15,6 @@ export class StatsComponent implements OnInit {
   };
   cardColor: string = '#232837';
 
-  onSelect(event) {
-    console.log(event);
-  }
-
   ngOnInit(): void {
   }
 
