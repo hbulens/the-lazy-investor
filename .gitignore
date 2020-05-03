@@ -115,3 +115,6 @@ packages
 *.csproj.user
 launchSettings.json
 *.log
+
+# The Lazy Investor
+environment.dev.ts

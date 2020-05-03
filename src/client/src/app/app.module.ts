@@ -1,4 +1,4 @@
-import { AgGridModule } from 'ag-grid-angular';
+import { AuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
 
 import { LayoutModule } from '@angular/cdk/layout';
 import { HttpClientModule } from '@angular/common/http';
@@ -23,6 +23,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { getAuthServiceConfigs } from './app.login.config';
+import { AuthGuardService } from './core/authguard.service';
 import { AngularMaterialModule } from './layout/angular-material.module';
 import { FooterComponent } from './layout/footer/footer.component';
 import { NavbarComponent } from './layout/header/navbar.component';
@@ -62,9 +64,13 @@ import * as fromApp from './store/app.reducer';
     MatMenuModule,
     DashboardModule,
     TransactionsModule,
-    PortfoliosModule
+    PortfoliosModule,
+    SocialLoginModule
   ],
-  providers: [],
+  providers: [{
+    provide: AuthServiceConfig,
+    useFactory: getAuthServiceConfigs
+  }, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

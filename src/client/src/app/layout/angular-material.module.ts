@@ -19,6 +19,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatBadgeModule } from '@angular/material/badge';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   imports: [
@@ -62,7 +63,8 @@ import { MatBadgeModule } from '@angular/material/badge';
   ],
   providers: [
     MatDatepickerModule,
-  ]
+  ],
+  declarations: [LoginComponent]
 })
 
 export class AngularMaterialModule { }
