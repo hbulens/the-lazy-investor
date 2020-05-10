@@ -3,13 +3,17 @@ using Microsoft.EntityFrameworkCore;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TheLazyInvestor.Entities;
 
-namespace TheLazyInvestor.Infrastructure
+namespace TheLazyInvestor.Db
 {
     public sealed class LazyInvestorDbContext : IdentityDbContext
     {
-        public LazyInvestorDbContext(DbContextOptions<LazyInvestorDbContext> options) : base(options)
+        private readonly ITenantProvider _tenantProvider;
+        internal string TenantId => _tenantProvider.GetTenantId();
+
+        public LazyInvestorDbContext(DbContextOptions<LazyInvestorDbContext> options, ITenantProvider tenantProvider) : base(options)
         {
             Database.EnsureCreated();
+            _tenantProvider = tenantProvider;
         }
 
 
@@ -23,6 +27,12 @@ namespace TheLazyInvestor.Infrastructure
             modelBuilder.HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn);
             modelBuilder.ApplyConfiguration(new PortfolioConfiguration());
             modelBuilder.ApplyConfiguration(new TransactionConfiguration());
+
+            modelBuilder.Entity<Transaction>().Property(x => x.TenantId).HasValueGenerator<TenantIdValueGenerator>();
+            modelBuilder.Entity<Transaction>().HasQueryFilter(x => x.TenantId == TenantId);
+
+            modelBuilder.Entity<Portfolio>().HasQueryFilter(x => x.TenantId == TenantId);
+            modelBuilder.Entity<Portfolio>().Property(x => x.TenantId).HasValueGenerator<TenantIdValueGenerator>();
         }
     }
 }

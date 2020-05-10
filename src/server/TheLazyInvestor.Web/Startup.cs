@@ -1,11 +1,8 @@
 using System;
 using System.IO;
 using System.Reflection;
-using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.OAuth;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -17,18 +14,18 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using TheLazyInvestor.Core;
+using TheLazyInvestor.Db;
 using TheLazyInvestor.Entities;
-using TheLazyInvestor.Infrastructure;
 
 namespace TheLazyInvestor.Web
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public class Startup
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="configuration"></param>
         public Startup(IConfiguration configuration)
@@ -37,7 +34,7 @@ namespace TheLazyInvestor.Web
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public IConfiguration Configuration { get; }
 
@@ -59,6 +56,8 @@ namespace TheLazyInvestor.Web
                         .AllowCredentials());
             });
 
+            services.AddTransient<ITenantProvider, HttpContextTenantProvider>();
+
             services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<LazyInvestorDbContext>()
                 .AddDefaultTokenProviders();
@@ -67,7 +66,7 @@ namespace TheLazyInvestor.Web
             {
                 options.DefaultSignOutScheme = IdentityConstants.ApplicationScheme;
             })
-                .AddGoogle("Google", options =>
+            .AddGoogle("Google", options =>
             {
                 options.CallbackPath = new PathString("/google-callback");
                 options.ClientId = appSettings.Authentication.GoogleClientId;

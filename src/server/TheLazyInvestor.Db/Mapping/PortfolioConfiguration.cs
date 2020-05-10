@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TheLazyInvestor.Entities;
 
-namespace TheLazyInvestor.Infrastructure
+namespace TheLazyInvestor.Db
 {
     public class PortfolioConfiguration : IEntityTypeConfiguration<Portfolio>
     {
