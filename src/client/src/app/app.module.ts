@@ -1,7 +1,5 @@
-import { AuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
-
 import { LayoutModule } from '@angular/cdk/layout';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -23,7 +21,6 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { getAuthServiceConfigs } from './app.login.config';
 import { AuthGuardService } from './core/authguard.service';
 import { AngularMaterialModule } from './layout/angular-material.module';
 import { FooterComponent } from './layout/footer/footer.component';
@@ -34,6 +31,7 @@ import { PortfoliosEffects } from './modules/portfolios/store/portfolios.effects
 import { TransactionsEffects } from './modules/transactions/store/transactions.effects';
 import { TransactionsModule } from './modules/transactions/transactions.module';
 import * as fromApp from './store/app.reducer';
+import { AuthInterceptor } from './core/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -64,13 +62,13 @@ import * as fromApp from './store/app.reducer';
     MatMenuModule,
     DashboardModule,
     TransactionsModule,
-    PortfoliosModule,
-    SocialLoginModule
+    PortfoliosModule
   ],
-  providers: [{
-    provide: AuthServiceConfig,
-    useFactory: getAuthServiceConfigs
-  }, AuthGuardService],
+  providers: [AuthGuardService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

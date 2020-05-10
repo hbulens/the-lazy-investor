@@ -4,10 +4,6 @@
 
 export const environment = {
   production: false,
-  authentication: {
-    facebook: '',
-    google: ''
-  },
   api: {
     url: "https://localhost:44350"
   }

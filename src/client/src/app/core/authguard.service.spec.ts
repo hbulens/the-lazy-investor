@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { AuthGuardService } from './authguard.service';
 import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('AuthGuardService', () => {
   let service: AuthGuardService;
@@ -10,6 +11,7 @@ describe('AuthGuardService', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
+        HttpClientModule
       ],
     });
     service = TestBed.inject(AuthGuardService);

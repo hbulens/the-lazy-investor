@@ -1,9 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { LoginComponent } from './login.component';
-import { RouterTestingModule } from '@angular/router/testing';
-import { AuthService, AuthServiceConfig } from 'angularx-social-login';
-import { getAuthServiceConfigs } from 'src/app/app.login.config';
+import { HttpClientModule } from '@angular/common/http';
+
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -12,13 +12,8 @@ describe('LoginComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
-      ],
-      providers: [{
-        provide: AuthServiceConfig,
-        useFactory: getAuthServiceConfigs
-      },
-        AuthService
+        RouterTestingModule,
+        HttpClientModule
       ],
       declarations: [LoginComponent]
     })
