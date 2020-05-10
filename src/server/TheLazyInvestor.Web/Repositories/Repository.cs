@@ -5,8 +5,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using TheLazyInvestor.Entities;
-using TheLazyInvestor.Infrastructure;
+using TheLazyInvestor.Db;
 
 namespace TheLazyInvestor.Web.Repositories
 {
@@ -22,7 +21,7 @@ namespace TheLazyInvestor.Web.Repositories
         public virtual async Task<IEnumerable<T>> GetAllAsync()
             => await Context.Set<T>().ToListAsync();
 
-        public virtual async Task<T> GetOneAsync(Expression<Func<T,bool>> filter)
+        public virtual async Task<T> GetOneAsync(Expression<Func<T, bool>> filter)
             => await Context.Set<T>().Where(filter).FirstOrDefaultAsync();
 
         public virtual async Task<T> CreateAsync(T entity)

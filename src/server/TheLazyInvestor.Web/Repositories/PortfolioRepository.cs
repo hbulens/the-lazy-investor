@@ -1,5 +1,5 @@
-﻿using TheLazyInvestor.Entities;
-using TheLazyInvestor.Infrastructure;
+﻿using TheLazyInvestor.Db;
+using TheLazyInvestor.Entities;
 
 namespace TheLazyInvestor.Web.Repositories
 {

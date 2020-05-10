@@ -1,6 +1,6 @@
 version: 2.1
 jobs:
-  build:
+  buildClient:   
     working_directory: ~/the-lazy-investor/src/client
     docker:
       - image: circleci/node:10-browsers
@@ -14,3 +14,25 @@ jobs:
           name: Run tests
           command: npm test
           no_output_timeout: 45m
+  buildServer:  
+    working_directory: ~/the-lazy-investor/src/server
+    docker:
+      - image: mcr.microsoft.com/dotnet/core/sdk:3.1
+    steps:
+      - checkout:
+            path: ~/the-lazy-investor
+      - run:
+          name: Restore packages
+          command: dotnet restore
+      - run:
+          name: Build app
+          command: dotnet restore
+      - run:
+          name: Test app
+          command: dotnet test
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - buildClient
+      - buildServer

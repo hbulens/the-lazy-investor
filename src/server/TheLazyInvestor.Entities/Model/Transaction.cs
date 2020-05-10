@@ -2,7 +2,7 @@
 
 namespace TheLazyInvestor.Entities
 {
-    public class Transaction
+    public class Transaction : Entity
     {
         public int Id { get; set; }
 

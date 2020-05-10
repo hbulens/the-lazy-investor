@@ -4,6 +4,9 @@
       <mat-icon (click)="sidenav.toggle()" class="hamburger">menu</mat-icon>
     </span>
     <div class="navTitle">The Lazy Investor</div>
+
+    <span class="example-spacer"></span>
+    <button mat-raised-button color="warn" (click)="logout()">Logout</button>
   </mat-toolbar>
 
   <mat-sidenav-container>
@@ -14,10 +17,10 @@
         <a mat-list-item routerLink="" routerLinkActive="active">
           <mat-icon>dashboard</mat-icon> Dashboard
         </a>
-        <a mat-list-item routerLink="portfolios" routerLinkActive="active">
+        <a mat-list-item routerLink="/portfolios" routerLinkActive="active">
           <mat-icon>account_balance</mat-icon> Portfolios
         </a>
-        <a mat-list-item routerLink="transactions" routerLinkActive="active">
+        <a mat-list-item routerLink="/transactions" routerLinkActive="active">
           <mat-icon>book</mat-icon> Transactions
         </a>
       </mat-nav-list>

@@ -1,19 +1,32 @@
 # The Lazy Investor
 
-![Build develop](https://img.shields.io/circleci/build/gh/hbulens/the-lazy-investor/develop?label=Build%20develop&token=fd9380b60e11d27b81f960c64177fdf0c83967ff)
-![Build master](https://img.shields.io/circleci/build/gh/hbulens/the-lazy-investor/master?label=Build%20master&token=fd9380b60e11d27b81f960c64177fdf0c83967ff)
+![Build develop](https://img.shields.io/circleci/build/gh/hbulens/the-lazy-investor/develop?label=Build%20develop&token=fd9380b60e11d27b81f960c64177fdf0c83967ff) ![Build master](https://img.shields.io/circleci/build/gh/hbulens/the-lazy-investor/master?label=Build%20master&token=fd9380b60e11d27b81f960c64177fdf0c83967ff)
 
-The lazy investor is an investment portfolio management application for the average Joe who intends to hold his assets for a long time.
+**The Lazy Investor**  is an investment portfolio management application for the average Joe who intends to hold his assets for a long time 📈.
 
-![Screenshot](docs/assets/the-lazy-investor.png)
+## About the project
 
-The basic functions include the management of the portfolio and registering transactions.
+With interest rates at an all-time low, putting your money on a savings account doesn't hold water any longer. Fortunately, there are many alternatives. Some may prefer an active investment strategy and will try to beat the market, where others may favor a passive strategy for whatever reason they may have.
 
-![Screenshot](docs/assets/the-lazy-investor-2.png)
+As the name suggests, **The Lazy Investor** aims to address the second group, who are only interested in the very long term. This implies that this type of investor holds a limited amount of instruments for several years or even decades. They are not phased by sudden drops or spikes of a stock as long as there is no reason to dump it. Basically, they follow the principles of great investors like Jack Bogle, Warren Buffett or Benjamin Graham. The Lazy Investor was created for this purpose. There are no fancy stock tickers with push notifications because that would lead to an information overload and short-sighted interventions. Instead, it is an easy to use application with just enough features to have a clear overview of your portfolios.
 
-![Screenshot](docs/assets/the-lazy-investor-3.png)
+## Screenshots
 
-Metrics are the major asset of this application. A comprehensive dashboard should give the lazy investor all he needs to know for the time being.
+Login with social accounts:
+
+![Login](docs/assets/the-lazy-investor-4.png)
+
+The dashboard:
+
+![Dashboard](docs/assets/the-lazy-investor.png)
+
+Managing portfolios:
+
+![Portfolios](docs/assets/the-lazy-investor-2.png)
+
+Managing transactions:
+
+![Transactions](docs/assets/the-lazy-investor-3.png)
 
 ## Getting Started
 
@@ -59,8 +72,7 @@ Run `dotnet publish` for the server app and `yarn build` for the client app
 
 The client application is built with a standard Angular 9 app, supported by libraries such as Angular Material and ngrx.
 
-The server application is built on top of the ASP.NET Core framework. It is primarily used to serve RESTful web services.
-Entity Framework is used as the ORM to query and manipulate data in a PostgreSQL database. For this project, the mediator pattern is used to link web requests to the back-end services.
+The server application is built on top of the ASP.NET Core framework. It is primarily used to serve RESTful web services. Entity Framework is used as the ORM to query and manipulate data in a PostgreSQL database. For this project, the mediator pattern is used to link web requests to the back-end services.
 
 ## Contributing
 

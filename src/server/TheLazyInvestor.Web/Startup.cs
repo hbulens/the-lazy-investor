@@ -5,6 +5,8 @@ using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,18 +14,28 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using TheLazyInvestor.Core;
+using TheLazyInvestor.Db;
 using TheLazyInvestor.Entities;
-using TheLazyInvestor.Infrastructure;
 
 namespace TheLazyInvestor.Web
 {
+    /// <summary>
+    ///
+    /// </summary>
     public class Startup
     {
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="configuration"></param>
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
+        /// <summary>
+        ///
+        /// </summary>
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -31,13 +43,45 @@ namespace TheLazyInvestor.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<AppSettings>(Configuration);
-            services.AddAutoMapper(typeof(Startup));
-            services.AddDbContext<LazyInvestorDbContext>(options => options.UseNpgsql(Configuration.GetConnectionString("LazyInvestorContext")));
+            AppSettings appSettings = (AppSettings)Configuration.Get(typeof(AppSettings));
 
             services.AddControllers();
+            services.AddCors(corsOptions =>
+            {
+                corsOptions.AddPolicy("Client application",
+                    configurePolicy => configurePolicy
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .WithOrigins(appSettings.AllowedOrigins)
+                        .AllowCredentials());
+            });
+
+            services.AddTransient<ITenantProvider, HttpContextTenantProvider>();
+
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<LazyInvestorDbContext>()
+                .AddDefaultTokenProviders();
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultSignOutScheme = IdentityConstants.ApplicationScheme;
+            })
+            .AddGoogle("Google", options =>
+            {
+                options.CallbackPath = new PathString("/google-callback");
+                options.ClientId = appSettings.Authentication.GoogleClientId;
+                options.ClientSecret = appSettings.Authentication.GoogleClientSecret;
+            }).AddFacebook("Facebook", options =>
+            {
+                options.CallbackPath = new PathString("/facebook-callback");
+                options.ClientId = appSettings.Authentication.FacebookClientId;
+                options.ClientSecret = appSettings.Authentication.FacebookClientSecret;
+            });
+
+            services.AddDbContext<LazyInvestorDbContext>(options => options.UseNpgsql(Configuration.GetConnectionString("LazyInvestorContext")));
+            services.AddAutoMapper(typeof(Startup));
             services.AddSwaggerGen(c =>
             {
-
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
@@ -69,7 +113,6 @@ namespace TheLazyInvestor.Web
                 .AddClasses(classes => classes.AssignableTo(typeof(IRepository<>)))
                 .AsImplementedInterfaces()
                 .WithTransientLifetime());
-
         }
 
         /// <summary>
@@ -90,18 +133,16 @@ namespace TheLazyInvestor.Web
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "The Lazy Investor API V1");
             });
 
+            app.UseCors("Client application");
+            app.UseAuthentication();
             app.UseRouting();
-
             app.UseAuthorization();
-
-            app.UseCors(b => b.AllowAnyMethod().AllowAnyHeader().WithOrigins(appSettings.Value.AllowedOrigins));
-
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllers().RequireAuthorization();
             });
         }
     }

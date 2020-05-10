@@ -7,7 +7,7 @@ using TheLazyInvestor.Core.Model;
 
 namespace TheLazyInvestor.Core
 {
-    public class CreateTransactionCommandExceptionHandler : IRequestExceptionHandler<CreateTransactionCommand, Portfolio>
+    public class CreateTransactionCommandExceptionHandler : IRequestExceptionHandler<CreateTransactionCommand, Transaction>
     {
         private ILogger _logger;
 
@@ -16,7 +16,7 @@ namespace TheLazyInvestor.Core
             _logger = logger;
         }
 
-        public Task Handle(CreateTransactionCommand request, Exception exception, RequestExceptionHandlerState<Portfolio> state, CancellationToken cancellationToken)
+        public Task Handle(CreateTransactionCommand request, Exception exception, RequestExceptionHandlerState<Transaction> state, CancellationToken cancellationToken)
         {
             _logger.LogError(exception, $"Exception occurred when creating portfolio {request?.Transaction?.Ticker}");
             return Task.CompletedTask;

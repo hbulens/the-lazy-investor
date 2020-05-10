@@ -1,0 +1,98 @@
+@import "https://fonts.googleapis.com/css?family=Exo:100,200,400";
+@import "https://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300";
+
+.body {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: auto;
+	height: auto;
+	background-image: url(https://images.unsplash.com/photo-1559526324-593bc073d938?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80);
+	background-size: cover;
+	-webkit-filter: blur(8px);
+	z-index: 0;
+}
+
+.grad {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: auto;
+	height: auto;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65)));
+	z-index: 1;
+	opacity: 0.7;
+}
+
+.header {
+	position: absolute;
+	top: calc(50%);
+	left: calc(50% - 10%);
+	z-index: 2;
+	div {
+		float: left;
+		color: #fff;
+		font-family: 'Exo', sans-serif;
+		font-size: 35px;
+		font-weight: 200;
+		span {
+			color: gray !important;
+		}
+	}
+}
+
+.login {
+	position: absolute;
+	top: calc(50% + 35px);
+	left: calc(50% - 10%);
+	height: 150px;
+	width: 350px;
+	padding: 10px;
+  z-index: 2;
+
+	input[type=text] {
+		width: 250px;
+		height: 30px;
+		background: transparent;
+		border: 1px solid rgba(255,255,255,0.6);
+		border-radius: 2px;
+		color: #fff;
+		font-family: 'Exo', sans-serif;
+		font-size: 16px;
+		font-weight: 400;
+		padding: 4px;
+  }
+
+	input[type=password] {
+		width: 250px;
+		height: 30px;
+		background: transparent;
+		border: 1px solid rgba(255,255,255,0.6);
+		border-radius: 2px;
+		color: #fff;
+		font-family: 'Exo', sans-serif;
+		font-size: 16px;
+		font-weight: 400;
+		padding: 4px;
+		margin-top: 10px;
+  }
+
+	input[type=button] {
+		width: 260px;
+		height: 35px;
+		background: #fff;
+		border: 1px solid #fff;
+		cursor: pointer;
+		border-radius: 2px;
+		color: #a18d6c;
+		font-family: 'Exo', sans-serif;
+		font-size: 16px;
+		font-weight: 400;
+		padding: 6px;
+		margin-top: 10px;
+	}
+}

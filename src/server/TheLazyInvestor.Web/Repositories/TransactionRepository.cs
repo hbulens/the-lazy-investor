@@ -4,8 +4,8 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using TheLazyInvestor.Db;
 using TheLazyInvestor.Entities;
-using TheLazyInvestor.Infrastructure;
 
 namespace TheLazyInvestor.Web.Repositories
 {

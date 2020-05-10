@@ -1,5 +1,6 @@
 import { Component, ViewChild, ElementRef, OnInit, HostListener } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
+import { AuthService } from 'src/app/core/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,6 +10,8 @@ import { MatSidenav } from '@angular/material/sidenav';
 export class NavbarComponent implements OnInit {
   opened = true;
   @ViewChild('sidenav', { static: true }) sidenav: MatSidenav;
+
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {
     if (window.innerWidth < 768) {
@@ -38,5 +41,9 @@ export class NavbarComponent implements OnInit {
     } else {
       return false;
     }
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }
